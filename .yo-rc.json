@@ -1,0 +1,60 @@
+{
+  "generator-jhipster": {
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "clientFramework": "angularX",
+    "serverPort": "8080",
+    "serviceDiscoveryType": false,
+    "skipUserManagement": false,
+    "withAdminUi": true,
+    "baseName": "jhipster",
+    "buildTool": "maven",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": [],
+    "messageBroker": false,
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "skipClient": false,
+    "testFrameworks": [],
+    "websocket": false,
+    "jhipsterVersion": "7.0.0-beta.1",
+    "skipServer": false,
+    "packageFolder": "com/mycompany/myapp",
+    "packageName": "com.mycompany.myapp",
+    "clientPackageManager": "npm",
+    "dtoSuffix": "DTO",
+    "entitySuffix": "",
+    "reactive": false,
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "applicationType": "monolith",
+    "entities": ["Region", "Country", "Location", "Department", "Task", "Employee", "Job", "JobHistory"],
+    "skipCheckLengthOfIdentifier": false,
+    "skipFakeData": false,
+    "blueprints": [
+      {
+        "name": "generator-jhipster-react-native",
+        "version": "4.0.0-alpha.2"
+      }
+    ],
+    "otherModules": [
+      {
+        "name": "generator-jhipster-react-native",
+        "version": "4.0.0-alpha.2"
+      }
+    ],
+    "pages": [],
+    "nativeLanguage": "en",
+    "creationTimestamp": 1611608039648,
+    "reactNative": {
+      "reactNativeAppName": "JHipsterReactNativeApp",
+      "detox": true
+    },
+    "lastLiquibaseTimestamp": 1611608519000
+  }
+}

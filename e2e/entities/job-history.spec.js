@@ -35,9 +35,9 @@ describe('JobHistory Screen Tests', () => {
     await tapFirstElementByLabel(' New ');
     await waitForElementToBeVisibleById('jobHistoryEditScrollView');
     await scrollTo('startDateInput', 'jobHistoryEditScrollView');
-    await setDateTimePickerValue('startDateInput', '2021-01-25T16:35:00-05:00', 'ISO8601');
+    await setDateTimePickerValue('startDateInput', '2021-01-25T16:35:00+00:00', 'ISO8601');
     await scrollTo('endDateInput', 'jobHistoryEditScrollView');
-    await setDateTimePickerValue('endDateInput', '2021-01-24T21:44:00-05:00', 'ISO8601');
+    await setDateTimePickerValue('endDateInput', '2021-01-24T21:44:00+00:00', 'ISO8601');
     await scrollTo('languageInput', 'jobHistoryEditScrollView');
     await setPickerValue('languageInput', 'ENGLISH');
     await element(by.id('jobHistoryEditScrollView')).swipe('down', 'slow');
@@ -48,10 +48,10 @@ describe('JobHistory Screen Tests', () => {
     await waitForElementToBeVisibleById('jobHistoryDetailScrollView');
     await scrollTo('startDate', 'jobHistoryDetailScrollView');
     const startDateCreateAttributes = await element(by.id('startDate')).getAttributes();
-    jestExpect(Date.parse(startDateCreateAttributes.label)).toEqual(Date.parse('2021-01-25T16:35:00-05:00'));
+    jestExpect(Date.parse(startDateCreateAttributes.label)).toEqual(Date.parse('2021-01-25T16:35:00+00:00'));
     await scrollTo('endDate', 'jobHistoryDetailScrollView');
     const endDateCreateAttributes = await element(by.id('endDate')).getAttributes();
-    jestExpect(Date.parse(endDateCreateAttributes.label)).toEqual(Date.parse('2021-01-24T21:44:00-05:00'));
+    jestExpect(Date.parse(endDateCreateAttributes.label)).toEqual(Date.parse('2021-01-24T21:44:00+00:00'));
     await scrollTo('language', 'jobHistoryDetailScrollView');
     await expect(element(by.id('language'))).toHaveLabel('ENGLISH');
 
@@ -60,9 +60,9 @@ describe('JobHistory Screen Tests', () => {
     await tapFirstElementByLabel('JobHistory Edit Button');
     await waitForElementToBeVisibleById('jobHistoryEditScrollView');
     await scrollTo('startDateInput', 'jobHistoryEditScrollView');
-    await setDateTimePickerValue('startDateInput', '2021-01-25T15:22:00-05:00', 'ISO8601');
+    await setDateTimePickerValue('startDateInput', '2021-01-25T15:22:00+00:00', 'ISO8601');
     await scrollTo('endDateInput', 'jobHistoryEditScrollView');
-    await setDateTimePickerValue('endDateInput', '2021-01-25T06:11:00-05:00', 'ISO8601');
+    await setDateTimePickerValue('endDateInput', '2021-01-25T06:11:00+00:00', 'ISO8601');
     await scrollTo('languageInput', 'jobHistoryEditScrollView');
     await setPickerValue('languageInput', 'SPANISH');
     await element(by.id('jobHistoryEditScrollView')).swipe('down', 'slow');
@@ -73,10 +73,10 @@ describe('JobHistory Screen Tests', () => {
     await waitForElementToBeVisibleById('jobHistoryDetailScrollView');
     await scrollTo('startDate', 'jobHistoryDetailScrollView');
     const startDateUpdateAttributes = await element(by.id('startDate')).getAttributes();
-    jestExpect(Date.parse(startDateUpdateAttributes.label)).toEqual(Date.parse('2021-01-25T15:22:00-05:00'));
+    jestExpect(Date.parse(startDateUpdateAttributes.label)).toEqual(Date.parse('2021-01-25T15:22:00+00:00'));
     await scrollTo('endDate', 'jobHistoryDetailScrollView');
     const endDateUpdateAttributes = await element(by.id('endDate')).getAttributes();
-    jestExpect(Date.parse(endDateUpdateAttributes.label)).toEqual(Date.parse('2021-01-25T06:11:00-05:00'));
+    jestExpect(Date.parse(endDateUpdateAttributes.label)).toEqual(Date.parse('2021-01-25T06:11:00+00:00'));
     await scrollTo('language', 'jobHistoryDetailScrollView');
     await expect(element(by.id('language'))).toHaveLabel('SPANISH');
 

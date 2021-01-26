@@ -1,1 +1,1 @@
-web: npx http-server web-build --proxy http://localhost:$PORT?
+web: npx http-server web-build --gzip --proxy http://localhost:$PORT?

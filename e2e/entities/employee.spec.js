@@ -42,7 +42,7 @@ describe('Employee Screen Tests', () => {
     await scrollTo('phoneNumberInput', 'employeeEditScrollView');
     await element(by.id('phoneNumberInput')).replaceText('drive');
     await scrollTo('hireDateInput', 'employeeEditScrollView');
-    await setDateTimePickerValue('hireDateInput', '2021-01-25T14:11:00-05:00', 'ISO8601');
+    await setDateTimePickerValue('hireDateInput', '2021-01-25T14:11:00+00:00', 'ISO8601');
     await scrollTo('salaryInput', 'employeeEditScrollView');
     await element(by.id('salaryInput')).replaceText('2602');
     await scrollTo('commissionPctInput', 'employeeEditScrollView');
@@ -63,7 +63,7 @@ describe('Employee Screen Tests', () => {
     await expect(element(by.id('phoneNumber'))).toHaveLabel('drive');
     await scrollTo('hireDate', 'employeeDetailScrollView');
     const hireDateCreateAttributes = await element(by.id('hireDate')).getAttributes();
-    jestExpect(Date.parse(hireDateCreateAttributes.label)).toEqual(Date.parse('2021-01-25T14:11:00-05:00'));
+    jestExpect(Date.parse(hireDateCreateAttributes.label)).toEqual(Date.parse('2021-01-25T14:11:00+00:00'));
     await scrollTo('salary', 'employeeDetailScrollView');
     await expect(element(by.id('salary'))).toHaveLabel('2602');
     await scrollTo('commissionPct', 'employeeDetailScrollView');
@@ -82,7 +82,7 @@ describe('Employee Screen Tests', () => {
     await scrollTo('phoneNumberInput', 'employeeEditScrollView');
     await element(by.id('phoneNumberInput')).replaceText('drive');
     await scrollTo('hireDateInput', 'employeeEditScrollView');
-    await setDateTimePickerValue('hireDateInput', '2021-01-25T16:24:00-05:00', 'ISO8601');
+    await setDateTimePickerValue('hireDateInput', '2021-01-25T16:24:00+00:00', 'ISO8601');
     await scrollTo('salaryInput', 'employeeEditScrollView');
     await element(by.id('salaryInput')).replaceText('49944');
     await scrollTo('commissionPctInput', 'employeeEditScrollView');
@@ -103,7 +103,7 @@ describe('Employee Screen Tests', () => {
     await expect(element(by.id('phoneNumber'))).toHaveLabel('drive');
     await scrollTo('hireDate', 'employeeDetailScrollView');
     const hireDateUpdateAttributes = await element(by.id('hireDate')).getAttributes();
-    jestExpect(Date.parse(hireDateUpdateAttributes.label)).toEqual(Date.parse('2021-01-25T16:24:00-05:00'));
+    jestExpect(Date.parse(hireDateUpdateAttributes.label)).toEqual(Date.parse('2021-01-25T16:24:00+00:00'));
     await scrollTo('salary', 'employeeDetailScrollView');
     await expect(element(by.id('salary'))).toHaveLabel('49944');
     await scrollTo('commissionPct', 'employeeDetailScrollView');

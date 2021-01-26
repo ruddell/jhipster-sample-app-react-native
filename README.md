@@ -46,13 +46,13 @@ You can find out more about the Expo CLI and other Expo Features in the [Expo do
 To generate entities:
 
 ```bash
-jhipster --blueprints react-native entity <name>
+jhipster entity <name>
 ```
 
 Or to import JDL:
 
 ```bash
-jhipster --blueprints react-native jdl <file.jdl>
+jhipster jdl <file.jdl>
 ```
 
 ## E2E Tests

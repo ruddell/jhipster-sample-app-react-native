@@ -55,6 +55,7 @@
       "reactNativeAppName": "JHipsterReactNativeApp",
       "detox": true
     },
-    "lastLiquibaseTimestamp": 1611608519000
+    "lastLiquibaseTimestamp": 1611608519000,
+    "herokuAppName": "jh-sample-app-react-native"
   }
 }

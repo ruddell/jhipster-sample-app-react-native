@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { useFocusEffect } from '@react-navigation/native';
 
-import TaskActions from './task.reducer';
-import RoundedButton from '../../../shared/components/rounded-button/rounded-button';
+import TaskActions from './task.reducer'
+import RoundedButton from '../../../shared/components/rounded-button/rounded-button'
 import TaskDeleteModal from './task-delete-modal';
-import styles from './task-styles';
+import styles from './task-styles'
 
 function TaskDetailScreen(props) {
   const { route, getTask, navigation, task, fetching, error } = props;
@@ -46,10 +46,10 @@ function TaskDetailScreen(props) {
       <Text>{task.id}</Text>
       {/* Title Field */}
       <Text style={styles.label}>Title:</Text>
-      <Text testID="title">{task.title}</Text>
+        <Text testID='title'>{task.title}</Text>
       {/* Description Field */}
       <Text style={styles.label}>Description:</Text>
-      <Text testID="description">{task.description}</Text>
+        <Text testID='description'>{task.description}</Text>
 
       <View style={styles.entityButtons}>
         <RoundedButton
@@ -84,9 +84,9 @@ const mapStateToProps = (state) => {
     error: state.tasks.errorOne,
     fetching: state.tasks.fetchingOne,
     deleting: state.tasks.deleting,
-    errorDeleting: state.tasks.errorDeleting,
-  };
-};
+    errorDeleting: state.tasks.errorDeleting
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -94,7 +94,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllTasks: (options) => dispatch(TaskActions.taskAllRequest(options)),
     deleteTask: (id) => dispatch(TaskActions.taskDeleteRequest(id)),
     resetTasks: () => dispatch(TaskActions.taskReset()),
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskDetailScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskDetailScreen)

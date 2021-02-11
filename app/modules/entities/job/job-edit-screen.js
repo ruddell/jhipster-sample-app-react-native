@@ -1,16 +1,18 @@
 import React, { createRef } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import JobActions from './job.reducer';
-import TaskActions from '../task/task.reducer';
-import EmployeeActions from '../employee/employee.reducer';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import JobActions from './job.reducer'
+import TaskActions from '../task/task.reducer'
+import EmployeeActions from '../employee/employee.reducer'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import FormButton from '../../../shared/components/form/jhi-form-button';
 import FormField from '../../../shared/components/form/jhi-form-field';
 import Form from '../../../shared/components/form/jhi-form';
 import { useDidUpdateEffect } from '../../../shared/util/use-did-update-effect';
-import styles from './job-styles';
+import styles from './job-styles'
+
+
 
 function JobEditScreen(props) {
   const {
@@ -55,7 +57,10 @@ function JobEditScreen(props) {
   React.useEffect(() => {
     getAllTasks();
     getAllEmployees();
-  }, [getAllTasks, getAllEmployees]);
+  }, [
+    getAllTasks,
+    getAllEmployees,
+  ]);
 
   useDidUpdateEffect(() => {
     if (updating === false) {
@@ -68,7 +73,8 @@ function JobEditScreen(props) {
     }
   }, [updateSuccess, errorUpdating, navigation]);
 
-  const onSubmit = (data) => updateJob(formValueToEntity(data));
+
+const onSubmit = (data) => updateJob(formValueToEntity(data));
 
   if (fetching) {
     return (
@@ -95,54 +101,59 @@ function JobEditScreen(props) {
         contentContainerStyle={styles.paddedScrollView}>
         {!!error && <Text style={styles.errorText}>{error}</Text>}
         {formValue && (
-          <Form initialValues={formValue} onSubmit={onSubmit} ref={formRef}>
-            <FormField
-              name="jobTitle"
-              ref={jobTitleRef}
-              label="Job Title"
-              placeholder="Enter Job Title"
-              testID="jobTitleInput"
-              inputType="text"
-              autoCapitalize="none"
-              onSubmitEditing={() => minSalaryRef.current?.focus()}
-            />
-            <FormField
-              name="minSalary"
-              ref={minSalaryRef}
-              label="Min Salary"
-              placeholder="Enter Min Salary"
-              testID="minSalaryInput"
-              inputType="number"
-              onSubmitEditing={() => maxSalaryRef.current?.focus()}
-            />
-            <FormField
-              name="maxSalary"
-              ref={maxSalaryRef}
-              label="Max Salary"
-              placeholder="Enter Max Salary"
-              testID="maxSalaryInput"
-              inputType="number"
-            />
-            <FormField
-              name="tasks"
-              inputType="select-multiple"
-              ref={tasksRef}
-              listItems={taskList}
-              listItemLabelField="title"
-              label="Task"
-              placeholder="Select Task"
-              testID="taskSelectInput"
-            />
-            <FormField
-              name="employee"
-              inputType="select-one"
-              ref={employeeRef}
-              listItems={employeeList}
-              listItemLabelField="email"
-              label="Employee"
-              placeholder="Select Employee"
-              testID="employeeSelectInput"
-            />
+          <Form initialValues={formValue}onSubmit={onSubmit} ref={formRef}>
+                <FormField 
+        name='jobTitle'
+        ref={jobTitleRef}
+        label='Job Title'
+        placeholder='Enter Job Title'
+        testID='jobTitleInput'
+        
+        inputType='text'
+        autoCapitalize='none'
+        
+        onSubmitEditing={() => minSalaryRef.current?.focus()}
+         />
+                <FormField 
+        name='minSalary'
+        ref={minSalaryRef}
+        label='Min Salary'
+        placeholder='Enter Min Salary'
+        testID='minSalaryInput'
+        
+        inputType='number'
+        
+        onSubmitEditing={() => maxSalaryRef.current?.focus()}
+         />
+                <FormField 
+        name='maxSalary'
+        ref={maxSalaryRef}
+        label='Max Salary'
+        placeholder='Enter Max Salary'
+        testID='maxSalaryInput'
+        
+        inputType='number'
+         />
+              <FormField
+  name="tasks"
+  inputType="select-multiple"
+  ref={tasksRef}
+  listItems={taskList}
+  listItemLabelField="title"
+  label="Task"
+  placeholder="Select Task"
+  testID="taskSelectInput"
+/>
+              <FormField
+  name="employee"
+  inputType="select-one"
+  ref={employeeRef}
+  listItems={employeeList}
+  listItemLabelField="email"
+  label="Employee"
+  placeholder="Select Employee"
+  testID="employeeSelectInput"
+/>
 
             <FormButton title={'Save'} testID={'submitButton'} />
           </Form>
@@ -155,7 +166,7 @@ function JobEditScreen(props) {
 // convenience methods for customizing the mapping of the entity to/from the form value
 const entityToFormValue = (value) => {
   if (!value) {
-    return {};
+    return {}
   }
   return {
     id: value.id ?? null,
@@ -163,20 +174,20 @@ const entityToFormValue = (value) => {
     minSalary: value.minSalary ?? null,
     maxSalary: value.maxSalary ?? null,
     tasks: value.tasks?.map((i) => i.id),
-    employee: value.employee && value.employee.id ? value.employee.id : null,
-  };
-};
+    employee: (value.employee && value.employee.id) ? value.employee.id : null,
+  }
+}
 const formValueToEntity = (value) => {
   const entity = {
     id: value.id ?? null,
     jobTitle: value.jobTitle ?? null,
     minSalary: value.minSalary ?? null,
     maxSalary: value.maxSalary ?? null,
-  };
+  }
   entity.tasks = value.tasks.map((id) => ({ id }));
-  entity.employee = value.employee ? { id: value.employee } : null;
-  return entity;
-};
+  entity.employee = value.employee ? { id: value.employee } : null
+  return entity
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -186,9 +197,9 @@ const mapStateToProps = (state) => {
     fetching: state.jobs.fetchingOne,
     updating: state.jobs.updating,
     updateSuccess: state.jobs.updateSuccess,
-    errorUpdating: state.jobs.errorUpdating,
-  };
-};
+    errorUpdating: state.jobs.errorUpdating
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -198,7 +209,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllJobs: (options) => dispatch(JobActions.jobAllRequest(options)),
     updateJob: (job) => dispatch(JobActions.jobUpdateRequest(job)),
     reset: () => dispatch(JobActions.jobReset()),
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobEditScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(JobEditScreen)

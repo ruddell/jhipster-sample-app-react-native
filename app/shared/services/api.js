@@ -1,7 +1,7 @@
 // a library to wrap and simplify api calls
-import apisauce from 'apisauce';
+import apisauce from 'apisauce'
 
-import AppConfig from '../../config/app-config';
+import AppConfig from '../../config/app-config'
 
 // our "constructor"
 const create = (baseURL = AppConfig.apiUrl) => {
@@ -16,11 +16,11 @@ const create = (baseURL = AppConfig.apiUrl) => {
     baseURL,
     // here are some default headers
     headers: {
-      'Cache-Control': 'no-cache',
+      'Cache-Control': 'no-cache'
     },
     // 10 second timeout...
-    timeout: 10000,
-  });
+    timeout: 10000
+  })
 
   // ------
   // STEP 2
@@ -36,29 +36,21 @@ const create = (baseURL = AppConfig.apiUrl) => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
-  const setAuthToken = (userAuth) => api.setHeader('Authorization', 'Bearer ' + userAuth);
-  const removeAuthToken = () => api.deleteHeader('Authorization');
-  const login = (userAuth) => api.post('api/authenticate', userAuth);
-  const register = (user) => api.post('api/register', user);
-  const forgotPassword = (data) =>
-    api.post('api/account/reset-password/init', data, {
-      headers: { 'Content-Type': 'text/plain', Accept: 'application/json, text/plain, */*' },
-    });
+  const setAuthToken = (userAuth) => api.setHeader('Authorization', 'Bearer ' + userAuth)
+  const removeAuthToken = () => api.deleteHeader('Authorization')
+  const login = (userAuth) => api.post('api/authenticate', userAuth)
+  const register = (user) => api.post('api/register', user)
+  const forgotPassword = (data) => api.post('api/account/reset-password/init', data, { headers: { 'Content-Type': 'text/plain', 'Accept': 'application/json, text/plain, */*' } })
 
-  const getAccount = () => api.get('api/account');
-  const updateAccount = (account) => api.post('api/account', account);
-  const changePassword = (currentPassword, newPassword) =>
-    api.post(
-      'api/account/change-password',
-      { currentPassword, newPassword },
-      { headers: { 'Content-Type': 'application/json', Accept: 'application/json, text/plain, */*' } },
-    );
+  const getAccount = () => api.get('api/account')
+  const updateAccount = (account) => api.post('api/account', account)
+  const changePassword = (currentPassword, newPassword) => api.post('api/account/change-password', { currentPassword, newPassword }, { headers: { 'Content-Type': 'application/json', 'Accept': 'application/json, text/plain, */*' } })
 
-  const getUser = (userId) => api.get('api/users/' + userId);
-  const getAllUsers = (options) => api.get('api/users', options);
-  const createUser = (user) => api.post('api/users', user);
-  const updateUser = (user) => api.put('api/users', user);
-  const deleteUser = (userId) => api.delete('api/users/' + userId);
+  const getUser = (userId) => api.get('api/users/' + userId)
+  const getAllUsers = (options) => api.get('api/users', options)
+  const createUser = (user) => api.post('api/users', user)
+  const updateUser = (user) => api.put('api/users', user)
+  const deleteUser = (userId) => api.delete('api/users/' + userId)
 
   const getRegion = (regionId) => api.get('api/regions/' + regionId);
   const getAllRegions = (options) => api.get('api/regions', options);
@@ -184,11 +176,11 @@ const create = (baseURL = AppConfig.apiUrl) => {
     forgotPassword,
     getAccount,
     updateAccount,
-    changePassword,
-  };
-};
+    changePassword
+  }
+}
 
 // let's return back our create method as the default.
 export default {
-  create,
-};
+  create
+}

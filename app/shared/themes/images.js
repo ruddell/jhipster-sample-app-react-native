@@ -2,6 +2,6 @@
 const images = {
   logoJhipster: require('../images/logo-jhipster.png'),
   toggleDrawerIcon: require('../images/toggle-drawer-icon/toggle-drawer-icon.png'),
-};
+}
 
-export default images;
+export default images

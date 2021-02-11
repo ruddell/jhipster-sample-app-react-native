@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { useFocusEffect } from '@react-navigation/native';
 
-import DepartmentActions from './department.reducer';
-import RoundedButton from '../../../shared/components/rounded-button/rounded-button';
+import DepartmentActions from './department.reducer'
+import RoundedButton from '../../../shared/components/rounded-button/rounded-button'
 import DepartmentDeleteModal from './department-delete-modal';
-import styles from './department-styles';
+import styles from './department-styles'
 
 function DepartmentDetailScreen(props) {
   const { route, getDepartment, navigation, department, fetching, error } = props;
@@ -46,9 +46,9 @@ function DepartmentDetailScreen(props) {
       <Text>{department.id}</Text>
       {/* DepartmentName Field */}
       <Text style={styles.label}>DepartmentName:</Text>
-      <Text testID="departmentName">{department.departmentName}</Text>
-      <Text style={styles.label}>Location:</Text>
-      <Text testID="location">{String(department.location ? department.location.streetAddress : '')}</Text>
+        <Text testID='departmentName'>{department.departmentName}</Text>
+        <Text style={styles.label}>Location:</Text>
+        <Text testID='location'>{String(department.location ? department.location.streetAddress : '')}</Text>
 
       <View style={styles.entityButtons}>
         <RoundedButton
@@ -83,9 +83,9 @@ const mapStateToProps = (state) => {
     error: state.departments.errorOne,
     fetching: state.departments.fetchingOne,
     deleting: state.departments.deleting,
-    errorDeleting: state.departments.errorDeleting,
-  };
-};
+    errorDeleting: state.departments.errorDeleting
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -93,7 +93,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllDepartments: (options) => dispatch(DepartmentActions.departmentAllRequest(options)),
     deleteDepartment: (id) => dispatch(DepartmentActions.departmentDeleteRequest(id)),
     resetDepartments: () => dispatch(DepartmentActions.departmentReset()),
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(DepartmentDetailScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(DepartmentDetailScreen)

@@ -47,11 +47,7 @@ function LoginScreen(props) {
   });
 
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.container}
-      testID="loginScreen"
-      keyboardShouldPersistTaps="handled"
-      keyboardDismissMode="on-drag">
+    <KeyboardAwareScrollView contentContainerStyle={styles.container} testID="loginScreen" keyboardShouldPersistTaps="handled" keyboardDismissMode="on-drag">
       {!!error && <Text style={styles.errorText}>{error}</Text>}
       <Form initialValues={{ login: '', password: '' }} validationSchema={validationSchema} onSubmit={onSubmit} ref={formRef}>
         <FormField

@@ -1,10 +1,10 @@
-import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
-import { connect } from 'react-redux';
+import React from 'react'
+import { FlatList, Text, TouchableOpacity, View } from 'react-native'
+import { connect } from 'react-redux'
 import { useFocusEffect } from '@react-navigation/native';
-import LocationActions from './location.reducer';
-import styles from './location-styles';
-import AlertMessage from '../../../shared/components/alert-message/alert-message';
+import LocationActions from './location.reducer'
+import styles from './location-styles'
+import AlertMessage from '../../../shared/components/alert-message/alert-message'
 
 function LocationScreen(props) {
   const [page, setPage] = React.useState(0);
@@ -30,32 +30,34 @@ function LocationScreen(props) {
           {/* <Text style={styles.label}>{item.description}</Text> */}
         </View>
       </TouchableOpacity>
-    );
-  };
+    )
+  }
 
   // Render a header
 
   // Show this when data is empty
-  const renderEmpty = () => <AlertMessage title="No Locations Found" show={!fetching} />;
+  const renderEmpty = () =>
+    <AlertMessage title='No Locations Found' show={!fetching} />
 
-  const keyExtractor = (item, index) => `${index}`;
+  const keyExtractor = (item, index) => `${index}`
 
   // How many items should be kept im memory as we scroll?
-  const oneScreensWorth = 20;
+  const oneScreensWorth = 20
 
   const fetchLocations = React.useCallback(() => {
     getAllLocations({ page: page - 1, sort, size });
   }, [getAllLocations, page, sort, size]);
 
+
   const handleLoadMore = () => {
     if (locationList.length) {
-      return;
+      return
     }
-    setPage(page + 1);
-    fetchLocations();
-  };
+    setPage(page + 1)
+    fetchLocations()
+  }
   return (
-    <View style={styles.container} testID="locationScreen">
+    <View style={styles.container} testID='locationScreen'>
       <FlatList
         contentContainerStyle={styles.listContent}
         data={locationList}
@@ -76,13 +78,13 @@ const mapStateToProps = (state) => {
     location: state.locations.location,
     fetching: state.locations.fetchingAll,
     error: state.locations.errorAll,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllLocations: (options) => dispatch(LocationActions.locationAllRequest(options)),
-  };
-};
+    getAllLocations: (options) => dispatch(LocationActions.locationAllRequest(options))
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocationScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationScreen)

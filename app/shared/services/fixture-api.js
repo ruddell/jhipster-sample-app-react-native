@@ -192,67 +192,71 @@ export default {
   updateUser: (user) => {
     return {
       ok: true,
-      data: require('../fixtures/update-user.json'),
-    };
+      data: require('../fixtures/update-user.json')
+    }
   },
   getAllUsers: () => {
     return {
       ok: true,
-      data: require('../fixtures/get-users.json'),
-    };
+      data: require('../fixtures/get-users.json')
+    }
   },
   getUser: (userId) => {
     return {
       ok: true,
-      data: require('../fixtures/get-user.json'),
-    };
+      data: require('../fixtures/get-user.json')
+    }
   },
   deleteUser: (userId) => {
     return {
-      ok: true,
-    };
+      ok: true
+    }
   },
   // auth fixtures
-  setAuthToken: () => {},
-  removeAuthToken: () => {},
+  setAuthToken: () => {
+
+  },
+  removeAuthToken: () => {
+
+  },
   login: (authObj) => {
     if (authObj.username === 'user' && authObj.password === 'user') {
       return {
         ok: true,
-        data: require('../fixtures/login.json'),
-      };
+        data: require('../fixtures/login.json')
+      }
     } else {
       return {
         ok: false,
         status: 400,
-        data: 'Invalid credentials',
-      };
+        data: 'Invalid credentials'
+      }
     }
   },
   register: ({ user }) => {
     if (user === 'user') {
       return {
-        ok: true,
-      };
+        ok: true
+      }
     } else {
       return {
         ok: false,
         data: {
           title: 'Invalid email',
-        },
-      };
+        }
+      }
     }
   },
   forgotPassword: ({ email }) => {
     if (email === 'valid@gmail.com') {
       return {
-        ok: true,
-      };
+        ok: true
+      }
     } else {
       return {
         ok: false,
-        data: 'Invalid email',
-      };
+        data: 'Invalid email'
+      }
     }
   },
   getAccount: () => {
@@ -260,26 +264,26 @@ export default {
       ok: true,
       status: 200,
       headers: {
-        'content-type': 'application/json;charset=UTF-8',
+        'content-type': 'application/json;charset=UTF-8'
       },
-      data: require('../fixtures/get-account.json'),
-    };
+      data: require('../fixtures/get-account.json')
+    }
   },
   updateAccount: () => {
     return {
-      ok: true,
-    };
+      ok: true
+    }
   },
   changePassword: ({ currentPassword }) => {
     if (currentPassword === 'valid-password') {
       return {
-        ok: true,
-      };
+        ok: true
+      }
     } else {
       return {
         ok: false,
-        data: 'Password error',
-      };
+        data: 'Password error'
+      }
     }
-  },
-};
+  }
+}

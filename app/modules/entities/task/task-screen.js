@@ -1,10 +1,10 @@
-import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
-import { connect } from 'react-redux';
+import React from 'react'
+import { FlatList, Text, TouchableOpacity, View } from 'react-native'
+import { connect } from 'react-redux'
 import { useFocusEffect } from '@react-navigation/native';
-import TaskActions from './task.reducer';
-import styles from './task-styles';
-import AlertMessage from '../../../shared/components/alert-message/alert-message';
+import TaskActions from './task.reducer'
+import styles from './task-styles'
+import AlertMessage from '../../../shared/components/alert-message/alert-message'
 
 function TaskScreen(props) {
   const [page, setPage] = React.useState(0);
@@ -30,32 +30,34 @@ function TaskScreen(props) {
           {/* <Text style={styles.label}>{item.description}</Text> */}
         </View>
       </TouchableOpacity>
-    );
-  };
+    )
+  }
 
   // Render a header
 
   // Show this when data is empty
-  const renderEmpty = () => <AlertMessage title="No Tasks Found" show={!fetching} />;
+  const renderEmpty = () =>
+    <AlertMessage title='No Tasks Found' show={!fetching} />
 
-  const keyExtractor = (item, index) => `${index}`;
+  const keyExtractor = (item, index) => `${index}`
 
   // How many items should be kept im memory as we scroll?
-  const oneScreensWorth = 20;
+  const oneScreensWorth = 20
 
   const fetchTasks = React.useCallback(() => {
     getAllTasks({ page: page - 1, sort, size });
   }, [getAllTasks, page, sort, size]);
 
+
   const handleLoadMore = () => {
     if (taskList.length) {
-      return;
+      return
     }
-    setPage(page + 1);
-    fetchTasks();
-  };
+    setPage(page + 1)
+    fetchTasks()
+  }
   return (
-    <View style={styles.container} testID="taskScreen">
+    <View style={styles.container} testID='taskScreen'>
       <FlatList
         contentContainerStyle={styles.listContent}
         data={taskList}
@@ -76,13 +78,13 @@ const mapStateToProps = (state) => {
     task: state.tasks.task,
     fetching: state.tasks.fetchingAll,
     error: state.tasks.errorAll,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllTasks: (options) => dispatch(TaskActions.taskAllRequest(options)),
-  };
-};
+    getAllTasks: (options) => dispatch(TaskActions.taskAllRequest(options))
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskScreen)

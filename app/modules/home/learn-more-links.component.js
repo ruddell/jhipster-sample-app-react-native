@@ -9,8 +9,8 @@
 
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import * as Linking from 'expo-linking';
-import React from 'react';
-import { Colors } from '../../shared/themes';
+import React from 'react'
+import { Colors } from '../../shared/themes'
 
 const links = [
   {
@@ -55,7 +55,7 @@ const links = [
     link: 'https://github.com/ruddell/generator-jhipster-react-native/blob/main/docs/storybook.md',
     description: 'How to use Storybook with React Native.',
   },
-];
+]
 
 const LinkList = () => (
   <View style={styles.container}>
@@ -63,15 +63,18 @@ const LinkList = () => (
       return (
         <React.Fragment key={id}>
           <View style={styles.separator} />
-          <TouchableOpacity accessibilityRole={'button'} onPress={() => Linking.openURL(link)} style={styles.linkContainer}>
+          <TouchableOpacity
+            accessibilityRole={'button'}
+            onPress={() => Linking.openURL(link)}
+            style={styles.linkContainer}>
             <Text style={styles.link}>{title}</Text>
             <Text style={styles.description}>{description}</Text>
           </TouchableOpacity>
         </React.Fragment>
-      );
+      )
     })}
   </View>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -101,6 +104,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light,
     height: 1,
   },
-});
+})
 
-export default LinkList;
+export default LinkList

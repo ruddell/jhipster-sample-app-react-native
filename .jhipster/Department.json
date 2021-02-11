@@ -34,5 +34,6 @@
   "embedded": false,
   "applications": ["jhipster"],
   "angularJSSuffix": "",
-  "changelogDate": "20210125205759"
+  "changelogDate": "20210125205759",
+  "skipCheckLengthOfIdentifier": false
 }

@@ -1,15 +1,17 @@
 import React, { createRef } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import LocationActions from './location.reducer';
-import CountryActions from '../country/country.reducer';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import LocationActions from './location.reducer'
+import CountryActions from '../country/country.reducer'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import FormButton from '../../../shared/components/form/jhi-form-button';
 import FormField from '../../../shared/components/form/jhi-form-field';
 import Form from '../../../shared/components/form/jhi-form';
 import { useDidUpdateEffect } from '../../../shared/util/use-did-update-effect';
-import styles from './location-styles';
+import styles from './location-styles'
+
+
 
 function LocationEditScreen(props) {
   const {
@@ -51,7 +53,9 @@ function LocationEditScreen(props) {
   // fetch related entities
   React.useEffect(() => {
     getAllCountries();
-  }, [getAllCountries]);
+  }, [
+    getAllCountries,
+  ]);
 
   useDidUpdateEffect(() => {
     if (updating === false) {
@@ -64,7 +68,8 @@ function LocationEditScreen(props) {
     }
   }, [updateSuccess, errorUpdating, navigation]);
 
-  const onSubmit = (data) => updateLocation(formValueToEntity(data));
+
+const onSubmit = (data) => updateLocation(formValueToEntity(data));
 
   if (fetching) {
     return (
@@ -91,56 +96,63 @@ function LocationEditScreen(props) {
         contentContainerStyle={styles.paddedScrollView}>
         {!!error && <Text style={styles.errorText}>{error}</Text>}
         {formValue && (
-          <Form initialValues={formValue} onSubmit={onSubmit} ref={formRef}>
-            <FormField
-              name="streetAddress"
-              ref={streetAddressRef}
-              label="Street Address"
-              placeholder="Enter Street Address"
-              testID="streetAddressInput"
-              inputType="text"
-              autoCapitalize="none"
-              onSubmitEditing={() => postalCodeRef.current?.focus()}
-            />
-            <FormField
-              name="postalCode"
-              ref={postalCodeRef}
-              label="Postal Code"
-              placeholder="Enter Postal Code"
-              testID="postalCodeInput"
-              inputType="text"
-              autoCapitalize="none"
-              onSubmitEditing={() => cityRef.current?.focus()}
-            />
-            <FormField
-              name="city"
-              ref={cityRef}
-              label="City"
-              placeholder="Enter City"
-              testID="cityInput"
-              inputType="text"
-              autoCapitalize="none"
-              onSubmitEditing={() => stateProvinceRef.current?.focus()}
-            />
-            <FormField
-              name="stateProvince"
-              ref={stateProvinceRef}
-              label="State Province"
-              placeholder="Enter State Province"
-              testID="stateProvinceInput"
-              inputType="text"
-              autoCapitalize="none"
-            />
-            <FormField
-              name="country"
-              inputType="select-one"
-              ref={countryRef}
-              listItems={countryList}
-              listItemLabelField="countryName"
-              label="Country"
-              placeholder="Select Country"
-              testID="countrySelectInput"
-            />
+          <Form initialValues={formValue}onSubmit={onSubmit} ref={formRef}>
+                <FormField 
+        name='streetAddress'
+        ref={streetAddressRef}
+        label='Street Address'
+        placeholder='Enter Street Address'
+        testID='streetAddressInput'
+        
+        inputType='text'
+        autoCapitalize='none'
+        
+        onSubmitEditing={() => postalCodeRef.current?.focus()}
+         />
+                <FormField 
+        name='postalCode'
+        ref={postalCodeRef}
+        label='Postal Code'
+        placeholder='Enter Postal Code'
+        testID='postalCodeInput'
+        
+        inputType='text'
+        autoCapitalize='none'
+        
+        onSubmitEditing={() => cityRef.current?.focus()}
+         />
+                <FormField 
+        name='city'
+        ref={cityRef}
+        label='City'
+        placeholder='Enter City'
+        testID='cityInput'
+        
+        inputType='text'
+        autoCapitalize='none'
+        
+        onSubmitEditing={() => stateProvinceRef.current?.focus()}
+         />
+                <FormField 
+        name='stateProvince'
+        ref={stateProvinceRef}
+        label='State Province'
+        placeholder='Enter State Province'
+        testID='stateProvinceInput'
+        
+        inputType='text'
+        autoCapitalize='none'
+         />
+              <FormField
+  name="country"
+  inputType="select-one"
+  ref={countryRef}
+  listItems={countryList}
+  listItemLabelField="countryName"
+  label="Country"
+  placeholder="Select Country"
+  testID="countrySelectInput"
+/>
 
             <FormButton title={'Save'} testID={'submitButton'} />
           </Form>
@@ -153,7 +165,7 @@ function LocationEditScreen(props) {
 // convenience methods for customizing the mapping of the entity to/from the form value
 const entityToFormValue = (value) => {
   if (!value) {
-    return {};
+    return {}
   }
   return {
     id: value.id ?? null,
@@ -161,9 +173,9 @@ const entityToFormValue = (value) => {
     postalCode: value.postalCode ?? null,
     city: value.city ?? null,
     stateProvince: value.stateProvince ?? null,
-    country: value.country && value.country.id ? value.country.id : null,
-  };
-};
+    country: (value.country && value.country.id) ? value.country.id : null,
+  }
+}
 const formValueToEntity = (value) => {
   const entity = {
     id: value.id ?? null,
@@ -171,10 +183,10 @@ const formValueToEntity = (value) => {
     postalCode: value.postalCode ?? null,
     city: value.city ?? null,
     stateProvince: value.stateProvince ?? null,
-  };
-  entity.country = value.country ? { id: value.country } : null;
-  return entity;
-};
+  }
+  entity.country = value.country ? { id: value.country } : null
+  return entity
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -183,9 +195,9 @@ const mapStateToProps = (state) => {
     fetching: state.locations.fetchingOne,
     updating: state.locations.updating,
     updateSuccess: state.locations.updateSuccess,
-    errorUpdating: state.locations.errorUpdating,
-  };
-};
+    errorUpdating: state.locations.errorUpdating
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -194,7 +206,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllLocations: (options) => dispatch(LocationActions.locationAllRequest(options)),
     updateLocation: (location) => dispatch(LocationActions.locationUpdateRequest(location)),
     reset: () => dispatch(LocationActions.locationReset()),
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocationEditScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationEditScreen)

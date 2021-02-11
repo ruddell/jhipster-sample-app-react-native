@@ -1,5 +1,5 @@
-import { createReducer, createActions } from 'reduxsauce';
-import Immutable from 'seamless-immutable';
+import { createReducer, createActions } from 'reduxsauce'
+import Immutable from 'seamless-immutable'
 
 /* ------------- Types and Action Creators ------------- */
 
@@ -19,11 +19,11 @@ const { Types, Creators } = createActions({
   taskUpdateFailure: ['error'],
   taskDeleteFailure: ['error'],
 
-  taskReset: [],
-});
+  taskReset: []
+})
 
-export const TaskTypes = Types;
-export default Creators;
+export const TaskTypes = Types
+export default Creators
 
 /* ------------- Initial State ------------- */
 
@@ -33,13 +33,13 @@ export const INITIAL_STATE = Immutable({
   updating: false,
   deleting: false,
   updateSuccess: false,
-  task: { id: undefined },
+  task: {id: undefined},
   taskList: [],
   errorOne: null,
   errorAll: null,
   errorUpdating: null,
   errorDeleting: null,
-});
+})
 
 /* ------------- Reducers ------------- */
 
@@ -48,104 +48,104 @@ export const request = (state) =>
   state.merge({
     fetchingOne: true,
     errorOne: false,
-    task: INITIAL_STATE.task,
-  });
+    task: INITIAL_STATE.task
+  })
 
 // request the data from an api
 export const allRequest = (state) =>
   state.merge({
     fetchingAll: true,
     errorAll: false,
-  });
+  })
 
 // request to update from an api
 export const updateRequest = (state) =>
   state.merge({
     updateSuccess: false,
-    updating: true,
-  });
+    updating: true
+  })
 // request to delete from an api
 export const deleteRequest = (state) =>
   state.merge({
-    deleting: true,
-  });
+    deleting: true
+  })
 
 // successful api lookup for single entity
 export const success = (state, action) => {
-  const { task } = action;
+  const { task } = action
   return state.merge({
     fetchingOne: false,
     errorOne: null,
-    task,
-  });
-};
+    task
+  })
+}
 // successful api lookup for all entities
 export const allSuccess = (state, action) => {
-  const { taskList } = action;
+  const { taskList} = action
   return state.merge({
     fetchingAll: false,
     errorAll: null,
-    taskList,
-  });
-};
+    taskList
+  })
+}
 // successful api update
 export const updateSuccess = (state, action) => {
-  const { task } = action;
+  const { task } = action
   return state.merge({
     updateSuccess: true,
     updating: false,
     errorUpdating: null,
-    task,
-  });
-};
+    task
+  })
+}
 // successful api delete
 export const deleteSuccess = (state) => {
   return state.merge({
     deleting: false,
     errorDeleting: null,
-    task: INITIAL_STATE.task,
-  });
-};
+    task: INITIAL_STATE.task
+  })
+}
 
 // Something went wrong fetching a single entity.
 export const failure = (state, action) => {
-  const { error } = action;
+  const { error } = action
   return state.merge({
     fetchingOne: false,
     errorOne: error,
-    task: INITIAL_STATE.task,
-  });
-};
+    task: INITIAL_STATE.task
+  })
+}
 // Something went wrong fetching all entities.
 export const allFailure = (state, action) => {
-  const { error } = action;
+  const { error } = action
   return state.merge({
     fetchingAll: false,
     errorAll: error,
-    taskList: [],
-  });
-};
+    taskList: []
+  })
+}
 // Something went wrong updating.
 export const updateFailure = (state, action) => {
-  const { error } = action;
+  const { error } = action
   return state.merge({
     updateSuccess: false,
     updating: false,
     errorUpdating: error,
-    task: state.task,
-  });
-};
+    task: state.task
+  })
+}
 // Something went wrong deleting.
 export const deleteFailure = (state, action) => {
-  const { error } = action;
+  const { error } = action
   return state.merge({
     deleting: false,
     errorDeleting: error,
-    task: state.task,
-  });
-};
+    task: state.task
+  })
+}
 
-export const reset = (state) => INITIAL_STATE;
+export const reset = (state) => INITIAL_STATE
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -164,5 +164,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.TASK_ALL_FAILURE]: allFailure,
   [Types.TASK_UPDATE_FAILURE]: updateFailure,
   [Types.TASK_DELETE_FAILURE]: deleteFailure,
-  [Types.TASK_RESET]: reset,
-});
+  [Types.TASK_RESET]: reset
+})

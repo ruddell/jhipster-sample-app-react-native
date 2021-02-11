@@ -1,10 +1,10 @@
-import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
-import { connect } from 'react-redux';
+import React from 'react'
+import { FlatList, Text, TouchableOpacity, View } from 'react-native'
+import { connect } from 'react-redux'
 import { useFocusEffect } from '@react-navigation/native';
-import EmployeeActions from './employee.reducer';
-import styles from './employee-styles';
-import AlertMessage from '../../../shared/components/alert-message/alert-message';
+import EmployeeActions from './employee.reducer'
+import styles from './employee-styles'
+import AlertMessage from '../../../shared/components/alert-message/alert-message'
 
 function EmployeeScreen(props) {
   const [page, setPage] = React.useState(0);
@@ -30,32 +30,34 @@ function EmployeeScreen(props) {
           {/* <Text style={styles.label}>{item.description}</Text> */}
         </View>
       </TouchableOpacity>
-    );
-  };
+    )
+  }
 
   // Render a header
 
   // Show this when data is empty
-  const renderEmpty = () => <AlertMessage title="No Employees Found" show={!fetching} />;
+  const renderEmpty = () =>
+    <AlertMessage title='No Employees Found' show={!fetching} />
 
-  const keyExtractor = (item, index) => `${index}`;
+  const keyExtractor = (item, index) => `${index}`
 
   // How many items should be kept im memory as we scroll?
-  const oneScreensWorth = 20;
+  const oneScreensWorth = 20
 
   const fetchEmployees = React.useCallback(() => {
     getAllEmployees({ page: page - 1, sort, size });
   }, [getAllEmployees, page, sort, size]);
 
+
   const handleLoadMore = () => {
     if (page < props.links.next || props.links.next === undefined || fetching) {
-      return;
+      return
     }
-    setPage(page + 1);
-    fetchEmployees();
-  };
+    setPage(page + 1)
+    fetchEmployees()
+  }
   return (
-    <View style={styles.container} testID="employeeScreen">
+    <View style={styles.container} testID='employeeScreen'>
       <FlatList
         contentContainerStyle={styles.listContent}
         data={employeeList}
@@ -77,13 +79,13 @@ const mapStateToProps = (state) => {
     fetching: state.employees.fetchingAll,
     error: state.employees.errorAll,
     links: state.employees.links,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllEmployees: (options) => dispatch(EmployeeActions.employeeAllRequest(options)),
-  };
-};
+    getAllEmployees: (options) => dispatch(EmployeeActions.employeeAllRequest(options))
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeScreen)

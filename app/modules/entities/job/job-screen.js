@@ -1,10 +1,10 @@
-import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
-import { connect } from 'react-redux';
+import React from 'react'
+import { FlatList, Text, TouchableOpacity, View } from 'react-native'
+import { connect } from 'react-redux'
 import { useFocusEffect } from '@react-navigation/native';
-import JobActions from './job.reducer';
-import styles from './job-styles';
-import AlertMessage from '../../../shared/components/alert-message/alert-message';
+import JobActions from './job.reducer'
+import styles from './job-styles'
+import AlertMessage from '../../../shared/components/alert-message/alert-message'
 
 function JobScreen(props) {
   const [page, setPage] = React.useState(0);
@@ -30,32 +30,34 @@ function JobScreen(props) {
           {/* <Text style={styles.label}>{item.description}</Text> */}
         </View>
       </TouchableOpacity>
-    );
-  };
+    )
+  }
 
   // Render a header
 
   // Show this when data is empty
-  const renderEmpty = () => <AlertMessage title="No Jobs Found" show={!fetching} />;
+  const renderEmpty = () =>
+    <AlertMessage title='No Jobs Found' show={!fetching} />
 
-  const keyExtractor = (item, index) => `${index}`;
+  const keyExtractor = (item, index) => `${index}`
 
   // How many items should be kept im memory as we scroll?
-  const oneScreensWorth = 20;
+  const oneScreensWorth = 20
 
   const fetchJobs = React.useCallback(() => {
     getAllJobs({ page: page - 1, sort, size });
   }, [getAllJobs, page, sort, size]);
 
+
   const handleLoadMore = () => {
     if (page < props.links.next || props.links.next === undefined || fetching) {
-      return;
+      return
     }
-    setPage(page + 1);
-    fetchJobs();
-  };
+    setPage(page + 1)
+    fetchJobs()
+  }
   return (
-    <View style={styles.container} testID="jobScreen">
+    <View style={styles.container} testID='jobScreen'>
       <FlatList
         contentContainerStyle={styles.listContent}
         data={jobList}
@@ -77,13 +79,13 @@ const mapStateToProps = (state) => {
     fetching: state.jobs.fetchingAll,
     error: state.jobs.errorAll,
     links: state.jobs.links,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllJobs: (options) => dispatch(JobActions.jobAllRequest(options)),
-  };
-};
+    getAllJobs: (options) => dispatch(JobActions.jobAllRequest(options))
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(JobScreen)

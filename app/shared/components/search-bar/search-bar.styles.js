@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
-import { Fonts, Colors, Metrics } from '../../themes';
+import { Fonts, Colors, Metrics } from '../../themes'
 
 export default StyleSheet.create({
   container: {
@@ -21,22 +21,22 @@ export default StyleSheet.create({
     borderColor: Colors.black,
     paddingLeft: 30,
     color: Colors.black,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   searchIcon: {
     left: Metrics.doubleBaseMargin,
     alignSelf: 'center',
     color: Colors.black,
-    backgroundColor: Colors.transparent,
+    backgroundColor: Colors.transparent
   },
   cancelButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: Metrics.baseMargin,
+    marginHorizontal: Metrics.baseMargin
   },
   buttonLabel: {
     color: Colors.black,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.regular,
-  },
-});
+    fontSize: Fonts.size.regular
+  }
+})

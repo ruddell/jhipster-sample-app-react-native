@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
 
-import JobHistoryActions from './job-history.reducer'
-import RoundedButton from '../../../shared/components/rounded-button/rounded-button'
+import JobHistoryActions from './job-history.reducer';
+import RoundedButton from '../../../shared/components/rounded-button/rounded-button';
 import JobHistoryDeleteModal from './job-history-delete-modal';
-import styles from './job-history-styles'
+import styles from './job-history-styles';
 
 function JobHistoryDetailScreen(props) {
   const { route, getJobHistory, navigation, jobHistory, fetching, error } = props;
@@ -46,19 +46,19 @@ function JobHistoryDetailScreen(props) {
       <Text>{jobHistory.id}</Text>
       {/* StartDate Field */}
       <Text style={styles.label}>StartDate:</Text>
-        <Text testID='startDate'>{String(jobHistory.startDate)}</Text>
+      <Text testID="startDate">{String(jobHistory.startDate)}</Text>
       {/* EndDate Field */}
       <Text style={styles.label}>EndDate:</Text>
-        <Text testID='endDate'>{String(jobHistory.endDate)}</Text>
+      <Text testID="endDate">{String(jobHistory.endDate)}</Text>
       {/* Language Field */}
       <Text style={styles.label}>Language:</Text>
-        <Text testID='language'>{jobHistory.language}</Text>
-        <Text style={styles.label}>Job:</Text>
-        <Text testID='job'>{String(jobHistory.job ? jobHistory.job.id : '')}</Text>
-        <Text style={styles.label}>Department:</Text>
-        <Text testID='department'>{String(jobHistory.department ? jobHistory.department.id : '')}</Text>
-        <Text style={styles.label}>Employee:</Text>
-        <Text testID='employee'>{String(jobHistory.employee ? jobHistory.employee.id : '')}</Text>
+      <Text testID="language">{jobHistory.language}</Text>
+      <Text style={styles.label}>Job:</Text>
+      <Text testID="job">{String(jobHistory.job ? jobHistory.job.id : '')}</Text>
+      <Text style={styles.label}>Department:</Text>
+      <Text testID="department">{String(jobHistory.department ? jobHistory.department.id : '')}</Text>
+      <Text style={styles.label}>Employee:</Text>
+      <Text testID="employee">{String(jobHistory.employee ? jobHistory.employee.id : '')}</Text>
 
       <View style={styles.entityButtons}>
         <RoundedButton
@@ -93,9 +93,9 @@ const mapStateToProps = (state) => {
     error: state.jobHistories.errorOne,
     fetching: state.jobHistories.fetchingOne,
     deleting: state.jobHistories.deleting,
-    errorDeleting: state.jobHistories.errorDeleting
-  }
-}
+    errorDeleting: state.jobHistories.errorDeleting,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -103,7 +103,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllJobHistories: (options) => dispatch(JobHistoryActions.jobHistoryAllRequest(options)),
     deleteJobHistory: (id) => dispatch(JobHistoryActions.jobHistoryDeleteRequest(id)),
     resetJobHistories: () => dispatch(JobHistoryActions.jobHistoryReset()),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobHistoryDetailScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(JobHistoryDetailScreen);

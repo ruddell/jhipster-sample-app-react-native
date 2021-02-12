@@ -4,7 +4,7 @@ import { ApplicationStyles } from '../../themes';
 
 import { Text, TouchableOpacity } from 'react-native';
 
-export default React.forwardRef(({ title, ...otherProps}, ref) => {
+export default React.forwardRef(({ title, ...otherProps }, ref) => {
   const { handleSubmit } = useFormikContext();
 
   return (

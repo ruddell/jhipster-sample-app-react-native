@@ -1,24 +1,21 @@
 import React, { createRef } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import * as Yup from 'yup';
 
-import DepartmentActions from './department.reducer'
-import LocationActions from '../location/location.reducer'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import DepartmentActions from './department.reducer';
+import LocationActions from '../location/location.reducer';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FormButton from '../../../shared/components/form/jhi-form-button';
 import FormField from '../../../shared/components/form/jhi-form-field';
 import Form from '../../../shared/components/form/jhi-form';
 import { useDidUpdateEffect } from '../../../shared/util/use-did-update-effect';
-import styles from './department-styles'
+import styles from './department-styles';
 
 // set up validation schema for the form
 const validationSchema = Yup.object().shape({
-  departmentName: Yup.string()
-    .required()
-    ,
+  departmentName: Yup.string().required(),
 });
-
 
 function DepartmentEditScreen(props) {
   const {
@@ -60,23 +57,20 @@ function DepartmentEditScreen(props) {
   // fetch related entities
   React.useEffect(() => {
     getAllLocations();
-  }, [
-    getAllLocations,
-  ]);
+  }, [getAllLocations]);
 
   useDidUpdateEffect(() => {
     if (updating === false) {
       if (errorUpdating) {
         setError(errorUpdating && errorUpdating.detail ? errorUpdating.detail : 'Something went wrong updating the entity');
-      } else {
+      } else if (updateSuccess) {
         setError('');
         isNewEntity ? navigation.replace('DepartmentDetail', { entityId: department?.id }) : navigation.pop();
       }
     }
   }, [updateSuccess, errorUpdating, navigation]);
 
-
-const onSubmit = (data) => updateDepartment(formValueToEntity(data));
+  const onSubmit = (data) => updateDepartment(formValueToEntity(data));
 
   if (fetching) {
     return (
@@ -100,27 +94,26 @@ const onSubmit = (data) => updateDepartment(formValueToEntity(data));
         contentContainerStyle={styles.paddedScrollView}>
         {!!error && <Text style={styles.errorText}>{error}</Text>}
         {formValue && (
-          <Form initialValues={formValue}validationSchema={validationSchema}onSubmit={onSubmit} ref={formRef}>
-                <FormField 
-        name='departmentName'
-        ref={departmentNameRef}
-        label='Department Name'
-        placeholder='Enter Department Name'
-        testID='departmentNameInput'
-        
-        inputType='text'
-        autoCapitalize='none'
-         />
-              <FormField
-  name="location"
-  inputType="select-one"
-  ref={locationRef}
-  listItems={locationList}
-  listItemLabelField="streetAddress"
-  label="Location"
-  placeholder="Select Location"
-  testID="locationSelectInput"
-/>
+          <Form initialValues={formValue} validationSchema={validationSchema} onSubmit={onSubmit} ref={formRef}>
+            <FormField
+              name="departmentName"
+              ref={departmentNameRef}
+              label="Department Name"
+              placeholder="Enter Department Name"
+              testID="departmentNameInput"
+              inputType="text"
+              autoCapitalize="none"
+            />
+            <FormField
+              name="location"
+              inputType="select-one"
+              ref={locationRef}
+              listItems={locationList}
+              listItemLabelField="streetAddress"
+              label="Location"
+              placeholder="Select Location"
+              testID="locationSelectInput"
+            />
 
             <FormButton title={'Save'} testID={'submitButton'} />
           </Form>
@@ -133,22 +126,22 @@ const onSubmit = (data) => updateDepartment(formValueToEntity(data));
 // convenience methods for customizing the mapping of the entity to/from the form value
 const entityToFormValue = (value) => {
   if (!value) {
-    return {}
+    return {};
   }
   return {
     id: value.id ?? null,
     departmentName: value.departmentName ?? null,
-    location: (value.location && value.location.id) ? value.location.id : null,
-  }
-}
+    location: value.location && value.location.id ? value.location.id : null,
+  };
+};
 const formValueToEntity = (value) => {
   const entity = {
     id: value.id ?? null,
     departmentName: value.departmentName ?? null,
-  }
-  entity.location = value.location ? { id: value.location } : null
-  return entity
-}
+  };
+  entity.location = value.location ? { id: value.location } : null;
+  return entity;
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -157,9 +150,9 @@ const mapStateToProps = (state) => {
     fetching: state.departments.fetchingOne,
     updating: state.departments.updating,
     updateSuccess: state.departments.updateSuccess,
-    errorUpdating: state.departments.errorUpdating
-  }
-}
+    errorUpdating: state.departments.errorUpdating,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -168,7 +161,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllDepartments: (options) => dispatch(DepartmentActions.departmentAllRequest(options)),
     updateDepartment: (department) => dispatch(DepartmentActions.departmentUpdateRequest(department)),
     reset: () => dispatch(DepartmentActions.departmentReset()),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(DepartmentEditScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(DepartmentEditScreen);

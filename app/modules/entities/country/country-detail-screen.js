@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
 
-import CountryActions from './country.reducer'
-import RoundedButton from '../../../shared/components/rounded-button/rounded-button'
+import CountryActions from './country.reducer';
+import RoundedButton from '../../../shared/components/rounded-button/rounded-button';
 import CountryDeleteModal from './country-delete-modal';
-import styles from './country-styles'
+import styles from './country-styles';
 
 function CountryDetailScreen(props) {
   const { route, getCountry, navigation, country, fetching, error } = props;
@@ -46,9 +46,9 @@ function CountryDetailScreen(props) {
       <Text>{country.id}</Text>
       {/* CountryName Field */}
       <Text style={styles.label}>CountryName:</Text>
-        <Text testID='countryName'>{country.countryName}</Text>
-        <Text style={styles.label}>Region:</Text>
-        <Text testID='region'>{String(country.region ? country.region.regionName : '')}</Text>
+      <Text testID="countryName">{country.countryName}</Text>
+      <Text style={styles.label}>Region:</Text>
+      <Text testID="region">{String(country.region ? country.region.regionName : '')}</Text>
 
       <View style={styles.entityButtons}>
         <RoundedButton
@@ -83,9 +83,9 @@ const mapStateToProps = (state) => {
     error: state.countries.errorOne,
     fetching: state.countries.fetchingOne,
     deleting: state.countries.deleting,
-    errorDeleting: state.countries.errorDeleting
-  }
-}
+    errorDeleting: state.countries.errorDeleting,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -93,7 +93,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllCountries: (options) => dispatch(CountryActions.countryAllRequest(options)),
     deleteCountry: (id) => dispatch(CountryActions.countryDeleteRequest(id)),
     resetCountries: () => dispatch(CountryActions.countryReset()),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(CountryDetailScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(CountryDetailScreen);

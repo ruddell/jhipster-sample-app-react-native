@@ -1,7 +1,7 @@
-import { createReducer, createActions } from 'reduxsauce'
-import Immutable from 'seamless-immutable'
-import { loadMoreDataWhenScrolled } from '../../../shared/util/pagination-utils'
-import { parseHeaderForLinks } from '../../../shared/util/url-utils'
+import { createReducer, createActions } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
+import { loadMoreDataWhenScrolled } from '../../../shared/util/pagination-utils';
+import { parseHeaderForLinks } from '../../../shared/util/url-utils';
 
 /* ------------- Types and Action Creators ------------- */
 
@@ -21,11 +21,11 @@ const { Types, Creators } = createActions({
   jobHistoryUpdateFailure: ['error'],
   jobHistoryDeleteFailure: ['error'],
 
-  jobHistoryReset: []
-})
+  jobHistoryReset: [],
+});
 
-export const JobHistoryTypes = Types
-export default Creators
+export const JobHistoryTypes = Types;
+export default Creators;
 
 /* ------------- Initial State ------------- */
 
@@ -35,7 +35,7 @@ export const INITIAL_STATE = Immutable({
   updating: false,
   deleting: false,
   updateSuccess: false,
-  jobHistory: {id: undefined},
+  jobHistory: { id: undefined },
   jobHistoryList: [],
   errorOne: null,
   errorAll: null,
@@ -43,7 +43,7 @@ export const INITIAL_STATE = Immutable({
   errorDeleting: null,
   links: { next: 0 },
   totalItems: 0,
-})
+});
 
 /* ------------- Reducers ------------- */
 
@@ -52,107 +52,107 @@ export const request = (state) =>
   state.merge({
     fetchingOne: true,
     errorOne: false,
-    jobHistory: INITIAL_STATE.jobHistory
-  })
+    jobHistory: INITIAL_STATE.jobHistory,
+  });
 
 // request the data from an api
 export const allRequest = (state) =>
   state.merge({
     fetchingAll: true,
     errorAll: false,
-  })
+  });
 
 // request to update from an api
 export const updateRequest = (state) =>
   state.merge({
     updateSuccess: false,
-    updating: true
-  })
+    updating: true,
+  });
 // request to delete from an api
 export const deleteRequest = (state) =>
   state.merge({
-    deleting: true
-  })
+    deleting: true,
+  });
 
 // successful api lookup for single entity
 export const success = (state, action) => {
-  const { jobHistory } = action
+  const { jobHistory } = action;
   return state.merge({
     fetchingOne: false,
     errorOne: null,
-    jobHistory
-  })
-}
+    jobHistory,
+  });
+};
 // successful api lookup for all entities
 export const allSuccess = (state, action) => {
-  const { jobHistoryList, headers} = action
-  const links = parseHeaderForLinks(headers.link)
+  const { jobHistoryList, headers } = action;
+  const links = parseHeaderForLinks(headers.link);
   return state.merge({
     fetchingAll: false,
     errorAll: null,
     links,
     totalItems: parseInt(headers['x-total-count'], 10),
     jobHistoryList: loadMoreDataWhenScrolled(state.jobHistoryList, jobHistoryList, links),
-  })
-}
+  });
+};
 // successful api update
 export const updateSuccess = (state, action) => {
-  const { jobHistory } = action
+  const { jobHistory } = action;
   return state.merge({
     updateSuccess: true,
     updating: false,
     errorUpdating: null,
-    jobHistory
-  })
-}
+    jobHistory,
+  });
+};
 // successful api delete
 export const deleteSuccess = (state) => {
   return state.merge({
     deleting: false,
     errorDeleting: null,
-    jobHistory: INITIAL_STATE.jobHistory
-  })
-}
+    jobHistory: INITIAL_STATE.jobHistory,
+  });
+};
 
 // Something went wrong fetching a single entity.
 export const failure = (state, action) => {
-  const { error } = action
+  const { error } = action;
   return state.merge({
     fetchingOne: false,
     errorOne: error,
-    jobHistory: INITIAL_STATE.jobHistory
-  })
-}
+    jobHistory: INITIAL_STATE.jobHistory,
+  });
+};
 // Something went wrong fetching all entities.
 export const allFailure = (state, action) => {
-  const { error } = action
+  const { error } = action;
   return state.merge({
     fetchingAll: false,
     errorAll: error,
-    jobHistoryList: []
-  })
-}
+    jobHistoryList: [],
+  });
+};
 // Something went wrong updating.
 export const updateFailure = (state, action) => {
-  const { error } = action
+  const { error } = action;
   return state.merge({
     updateSuccess: false,
     updating: false,
     errorUpdating: error,
-    jobHistory: state.jobHistory
-  })
-}
+    jobHistory: state.jobHistory,
+  });
+};
 // Something went wrong deleting.
 export const deleteFailure = (state, action) => {
-  const { error } = action
+  const { error } = action;
   return state.merge({
     deleting: false,
     errorDeleting: error,
-    jobHistory: state.jobHistory
-  })
-}
+    jobHistory: state.jobHistory,
+  });
+};
 
-export const reset = (state) => INITIAL_STATE
+export const reset = (state) => INITIAL_STATE;
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -171,5 +171,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.JOB_HISTORY_ALL_FAILURE]: allFailure,
   [Types.JOB_HISTORY_UPDATE_FAILURE]: updateFailure,
   [Types.JOB_HISTORY_DELETE_FAILURE]: deleteFailure,
-  [Types.JOB_HISTORY_RESET]: reset
-})
+  [Types.JOB_HISTORY_RESET]: reset,
+});

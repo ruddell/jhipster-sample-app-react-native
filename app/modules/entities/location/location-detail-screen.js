@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
 
-import LocationActions from './location.reducer'
-import RoundedButton from '../../../shared/components/rounded-button/rounded-button'
+import LocationActions from './location.reducer';
+import RoundedButton from '../../../shared/components/rounded-button/rounded-button';
 import LocationDeleteModal from './location-delete-modal';
-import styles from './location-styles'
+import styles from './location-styles';
 
 function LocationDetailScreen(props) {
   const { route, getLocation, navigation, location, fetching, error } = props;
@@ -46,18 +46,18 @@ function LocationDetailScreen(props) {
       <Text>{location.id}</Text>
       {/* StreetAddress Field */}
       <Text style={styles.label}>StreetAddress:</Text>
-        <Text testID='streetAddress'>{location.streetAddress}</Text>
+      <Text testID="streetAddress">{location.streetAddress}</Text>
       {/* PostalCode Field */}
       <Text style={styles.label}>PostalCode:</Text>
-        <Text testID='postalCode'>{location.postalCode}</Text>
+      <Text testID="postalCode">{location.postalCode}</Text>
       {/* City Field */}
       <Text style={styles.label}>City:</Text>
-        <Text testID='city'>{location.city}</Text>
+      <Text testID="city">{location.city}</Text>
       {/* StateProvince Field */}
       <Text style={styles.label}>StateProvince:</Text>
-        <Text testID='stateProvince'>{location.stateProvince}</Text>
-        <Text style={styles.label}>Country:</Text>
-        <Text testID='country'>{String(location.country ? location.country.countryName : '')}</Text>
+      <Text testID="stateProvince">{location.stateProvince}</Text>
+      <Text style={styles.label}>Country:</Text>
+      <Text testID="country">{String(location.country ? location.country.countryName : '')}</Text>
 
       <View style={styles.entityButtons}>
         <RoundedButton
@@ -92,9 +92,9 @@ const mapStateToProps = (state) => {
     error: state.locations.errorOne,
     fetching: state.locations.fetchingOne,
     deleting: state.locations.deleting,
-    errorDeleting: state.locations.errorDeleting
-  }
-}
+    errorDeleting: state.locations.errorDeleting,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -102,7 +102,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllLocations: (options) => dispatch(LocationActions.locationAllRequest(options)),
     deleteLocation: (id) => dispatch(LocationActions.locationDeleteRequest(id)),
     resetLocations: () => dispatch(LocationActions.locationReset()),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocationDetailScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(LocationDetailScreen);

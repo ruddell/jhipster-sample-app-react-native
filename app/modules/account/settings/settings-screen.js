@@ -44,7 +44,11 @@ function SettingsScreen(props) {
   const emailRef = createRef();
 
   return (
-    <KeyboardAwareScrollView contentContainerStyle={styles.container} testID="settingsScreen" keyboardShouldPersistTaps="handled" keyboardDismissMode="on-drag">
+    <KeyboardAwareScrollView
+      contentContainerStyle={styles.container}
+      testID="settingsScreen"
+      keyboardShouldPersistTaps="handled"
+      keyboardDismissMode="on-drag">
       {!!error && <Text style={styles.errorText}>{error}</Text>}
       {!!success && <Text style={styles.successText}>{success}</Text>}
       <Form initialValues={props.account} validationSchema={validationSchema} onSubmit={onSubmit} ref={formRef}>

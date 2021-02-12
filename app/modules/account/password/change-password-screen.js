@@ -49,7 +49,11 @@ function ChangePasswordScreen(props) {
   const confirmPasswordRef = createRef();
 
   return (
-    <KeyboardAwareScrollView contentContainerStyle={styles.container} testID="changePasswordScreen" keyboardShouldPersistTaps="handled" keyboardDismissMode="on-drag">
+    <KeyboardAwareScrollView
+      contentContainerStyle={styles.container}
+      testID="changePasswordScreen"
+      keyboardShouldPersistTaps="handled"
+      keyboardDismissMode="on-drag">
       {!!error && <Text style={styles.errorText}>{error}</Text>}
       {!!success && <Text style={styles.successText}>{success}</Text>}
       <Form

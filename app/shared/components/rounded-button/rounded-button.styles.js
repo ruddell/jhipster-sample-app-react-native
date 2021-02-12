@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-import { Fonts, Colors, Metrics } from '../../themes'
+import { Fonts, Colors, Metrics } from '../../themes';
 
 export default StyleSheet.create({
   button: {
@@ -9,13 +9,13 @@ export default StyleSheet.create({
     marginHorizontal: Metrics.section,
     marginVertical: Metrics.baseMargin,
     backgroundColor: Colors.jhipsterBlue,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   buttonText: {
     color: Colors.white,
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: Fonts.size.medium,
-    marginVertical: Metrics.baseMargin
-  }
-})
+    marginVertical: Metrics.baseMargin,
+  },
+});

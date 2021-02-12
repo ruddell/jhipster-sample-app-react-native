@@ -1,10 +1,10 @@
-import React from 'react'
-import { FlatList, Text, TouchableOpacity, View } from 'react-native'
-import { connect } from 'react-redux'
+import React from 'react';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
-import RegionActions from './region.reducer'
-import styles from './region-styles'
-import AlertMessage from '../../../shared/components/alert-message/alert-message'
+import RegionActions from './region.reducer';
+import styles from './region-styles';
+import AlertMessage from '../../../shared/components/alert-message/alert-message';
 
 function RegionScreen(props) {
   const [page, setPage] = React.useState(0);
@@ -30,34 +30,32 @@ function RegionScreen(props) {
           {/* <Text style={styles.label}>{item.description}</Text> */}
         </View>
       </TouchableOpacity>
-    )
-  }
+    );
+  };
 
   // Render a header
 
   // Show this when data is empty
-  const renderEmpty = () =>
-    <AlertMessage title='No Regions Found' show={!fetching} />
+  const renderEmpty = () => <AlertMessage title="No Regions Found" show={!fetching} />;
 
-  const keyExtractor = (item, index) => `${index}`
+  const keyExtractor = (item, index) => `${index}`;
 
   // How many items should be kept im memory as we scroll?
-  const oneScreensWorth = 20
+  const oneScreensWorth = 20;
 
   const fetchRegions = React.useCallback(() => {
     getAllRegions({ page: page - 1, sort, size });
   }, [getAllRegions, page, sort, size]);
 
-
   const handleLoadMore = () => {
     if (regionList.length) {
-      return
+      return;
     }
-    setPage(page + 1)
-    fetchRegions()
-  }
+    setPage(page + 1);
+    fetchRegions();
+  };
   return (
-    <View style={styles.container} testID='regionScreen'>
+    <View style={styles.container} testID="regionScreen">
       <FlatList
         contentContainerStyle={styles.listContent}
         data={regionList}
@@ -78,13 +76,13 @@ const mapStateToProps = (state) => {
     region: state.regions.region,
     fetching: state.regions.fetchingAll,
     error: state.regions.errorAll,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllRegions: (options) => dispatch(RegionActions.regionAllRequest(options))
-  }
-}
+    getAllRegions: (options) => dispatch(RegionActions.regionAllRequest(options)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegionScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(RegionScreen);

@@ -1,36 +1,36 @@
-import { takeLatest, all } from 'redux-saga/effects'
-import API from '../services/api'
-import FixtureAPI from '../services/fixture-api'
-import AppConfig from '../../config/app-config'
+import { takeLatest, all } from 'redux-saga/effects';
+import API from '../services/api';
+import FixtureAPI from '../services/fixture-api';
+import AppConfig from '../../config/app-config';
 
 /* ------------- Types ------------- */
 
-import { StartupTypes } from '../reducers/startup.reducer'
-import { LoginTypes } from '../../modules/login/login.reducer'
-import { AccountTypes } from '../../shared/reducers/account.reducer'
-import { RegisterTypes } from '../../modules/account/register/register.reducer'
-import { ForgotPasswordTypes } from '../../modules/account/password-reset/forgot-password.reducer'
-import { ChangePasswordTypes } from '../../modules/account/password/change-password.reducer'
-import { UserTypes } from '../../shared/reducers/user.reducer'
-import { RegionTypes } from '../../modules/entities/region/region.reducer'
-import { CountryTypes } from '../../modules/entities/country/country.reducer'
-import { LocationTypes } from '../../modules/entities/location/location.reducer'
-import { DepartmentTypes } from '../../modules/entities/department/department.reducer'
-import { TaskTypes } from '../../modules/entities/task/task.reducer'
-import { EmployeeTypes } from '../../modules/entities/employee/employee.reducer'
-import { JobTypes } from '../../modules/entities/job/job.reducer'
-import { JobHistoryTypes } from '../../modules/entities/job-history/job-history.reducer'
+import { StartupTypes } from '../reducers/startup.reducer';
+import { LoginTypes } from '../../modules/login/login.reducer';
+import { AccountTypes } from '../../shared/reducers/account.reducer';
+import { RegisterTypes } from '../../modules/account/register/register.reducer';
+import { ForgotPasswordTypes } from '../../modules/account/password-reset/forgot-password.reducer';
+import { ChangePasswordTypes } from '../../modules/account/password/change-password.reducer';
+import { UserTypes } from '../../shared/reducers/user.reducer';
+import { RegionTypes } from '../../modules/entities/region/region.reducer';
+import { CountryTypes } from '../../modules/entities/country/country.reducer';
+import { LocationTypes } from '../../modules/entities/location/location.reducer';
+import { DepartmentTypes } from '../../modules/entities/department/department.reducer';
+import { TaskTypes } from '../../modules/entities/task/task.reducer';
+import { EmployeeTypes } from '../../modules/entities/employee/employee.reducer';
+import { JobTypes } from '../../modules/entities/job/job.reducer';
+import { JobHistoryTypes } from '../../modules/entities/job-history/job-history.reducer';
 // jhipster-react-native-saga-redux-import-needle
 
 /* ------------- Sagas ------------- */
 
-import { startup } from './startup.saga'
-import { login, logout, loginLoad } from '../../modules/login/login.sagas'
-import { register } from '../../modules/account/register/register.sagas'
-import { forgotPassword } from '../../modules/account/password-reset/forgot-password.sagas'
-import { changePassword } from '../../modules/account/password/change-password.sagas'
-import { getAccount, updateAccount } from '../../shared/sagas/account.sagas'
-import UserSagas from '../../shared/sagas/user.sagas'
+import { startup } from './startup.saga';
+import { login, logout, loginLoad } from '../../modules/login/login.sagas';
+import { register } from '../../modules/account/register/register.sagas';
+import { forgotPassword } from '../../modules/account/password-reset/forgot-password.sagas';
+import { changePassword } from '../../modules/account/password/change-password.sagas';
+import { getAccount, updateAccount } from '../../shared/sagas/account.sagas';
+import UserSagas from '../../shared/sagas/user.sagas';
 import RegionSagas from '../../modules/entities/region/region.sagas';
 import CountrySagas from '../../modules/entities/country/country.sagas';
 import LocationSagas from '../../modules/entities/location/location.sagas';
@@ -45,11 +45,11 @@ import JobHistorySagas from '../../modules/entities/job-history/job-history.saga
 
 // The API we use is only used from Sagas, so we create it here and pass along
 // to the sagas which need it.
-const api = AppConfig.useFixtures ? FixtureAPI : API.create()
+const api = AppConfig.useFixtures ? FixtureAPI : API.create();
 
 /* ------------- Connect Types To Sagas ------------- */
 
-export default function * root () {
+export default function* root() {
   yield all([
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
@@ -109,6 +109,6 @@ export default function * root () {
     takeLatest(UserTypes.USER_ALL_REQUEST, UserSagas.getAllUsers, api),
 
     takeLatest(AccountTypes.ACCOUNT_REQUEST, getAccount, api),
-    takeLatest(AccountTypes.ACCOUNT_UPDATE_REQUEST, updateAccount, api)
-  ])
+    takeLatest(AccountTypes.ACCOUNT_UPDATE_REQUEST, updateAccount, api),
+  ]);
 }

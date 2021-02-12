@@ -31,7 +31,7 @@ describe('Change Password Screen Tests', () => {
     await element(by.id('currentPasswordInput')).replaceText(oldPassword);
     await element(by.id('newPasswordInput')).replaceText(newPassword);
     await element(by.id('confirmPasswordInput')).replaceText(newPassword);
-    await waitThenTapButton('changePasswordSubmitButton')
+    await waitThenTapButton('changePasswordSubmitButton');
   };
 
   it('should display a success message on change password success', async () => {

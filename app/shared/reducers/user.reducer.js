@@ -1,5 +1,5 @@
-import { createReducer, createActions } from 'reduxsauce'
-import Immutable from 'seamless-immutable'
+import { createReducer, createActions } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
 
 /* ------------- Types and Action Creators ------------- */
 
@@ -17,11 +17,11 @@ const { Types, Creators } = createActions({
   userAllFailure: ['error'],
   userFailure: ['error'],
   userUpdateFailure: ['error'],
-  userDeleteFailure: ['error']
-})
+  userDeleteFailure: ['error'],
+});
 
-export const UserTypes = Types
-export default Creators
+export const UserTypes = Types;
+export default Creators;
 
 /* ------------- Initial State ------------- */
 
@@ -35,8 +35,8 @@ export const INITIAL_STATE = Immutable({
   errorAll: null,
   errorOne: null,
   errorUpdating: null,
-  errorDeleting: null
-})
+  errorDeleting: null,
+});
 
 /* ------------- Reducers ------------- */
 
@@ -44,101 +44,101 @@ export const INITIAL_STATE = Immutable({
 export const allRequest = (state) =>
   state.merge({
     fetchingAll: true,
-    userList: []
-  })
+    userList: [],
+  });
 
 // request the data from an api
 export const request = (state) =>
   state.merge({
     fetchingOne: true,
-    user: null
-  })
+    user: null,
+  });
 
 // request to update from an api
 export const updateRequest = (state) =>
   state.merge({
-    updating: true
-  })
+    updating: true,
+  });
 // request to delete from an api
 export const deleteRequest = (state) =>
   state.merge({
-    deleting: true
-  })
+    deleting: true,
+  });
 
 // successful api lookup for all entities
 export const allSuccess = (state, action) => {
-  const { userList } = action
+  const { userList } = action;
   return state.merge({
     fetchingAll: false,
     errorAll: null,
-    userList
-  })
-}
+    userList,
+  });
+};
 
 // successful api lookup for single entity
 export const success = (state, action) => {
-  const { user } = action
+  const { user } = action;
   return state.merge({
     fetchingOne: false,
     errorOne: null,
-    user
-  })
-}
+    user,
+  });
+};
 
 // successful api update
 export const updateSuccess = (state, action) => {
-  const { user } = action
+  const { user } = action;
   return state.merge({
     updating: false,
     errorUpdating: null,
-    user
-  })
-}
+    user,
+  });
+};
 // successful api delete
 export const deleteSuccess = (state) => {
   return state.merge({
     deleting: false,
     errorDeleting: null,
-    user: null
-  })
-}
+    user: null,
+  });
+};
 
 // Something went wrong fetching all entities.
 export const allFailure = (state, action) => {
-  const { error } = action
+  const { error } = action;
   return state.merge({
     fetchingAll: false,
     errorAll: error,
-    userList: []
-  })
-}
+    userList: [],
+  });
+};
 
 // Something went wrong fetching a single entity.
 export const failure = (state, action) => {
-  const { error } = action
+  const { error } = action;
   return state.merge({
     fetchingOne: false,
     errorOne: error,
-    user: null
-  })
-}
+    user: null,
+  });
+};
 
 // Something went wrong updating.
 export const updateFailure = (state, action) => {
-  const { error } = action
+  const { error } = action;
   return state.merge({
     updating: false,
     errorUpdating: error,
-  })
-}
+  });
+};
 // Something went wrong deleting.
 export const deleteFailure = (state, action) => {
-  const { error } = action
+  const { error } = action;
   return state.merge({
     deleting: false,
     errorDeleting: error,
-  })
-}
+  });
+};
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -156,5 +156,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.USER_ALL_FAILURE]: allFailure,
   [Types.USER_FAILURE]: failure,
   [Types.USER_UPDATE_FAILURE]: updateFailure,
-  [Types.USER_DELETE_FAILURE]: deleteFailure
-})
+  [Types.USER_DELETE_FAILURE]: deleteFailure,
+});

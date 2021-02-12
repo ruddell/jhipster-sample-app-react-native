@@ -1,10 +1,10 @@
-import React from 'react'
-import { FlatList, Text, TouchableOpacity, View } from 'react-native'
-import { connect } from 'react-redux'
+import React from 'react';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
-import DepartmentActions from './department.reducer'
-import styles from './department-styles'
-import AlertMessage from '../../../shared/components/alert-message/alert-message'
+import DepartmentActions from './department.reducer';
+import styles from './department-styles';
+import AlertMessage from '../../../shared/components/alert-message/alert-message';
 
 function DepartmentScreen(props) {
   const [page, setPage] = React.useState(0);
@@ -30,34 +30,32 @@ function DepartmentScreen(props) {
           {/* <Text style={styles.label}>{item.description}</Text> */}
         </View>
       </TouchableOpacity>
-    )
-  }
+    );
+  };
 
   // Render a header
 
   // Show this when data is empty
-  const renderEmpty = () =>
-    <AlertMessage title='No Departments Found' show={!fetching} />
+  const renderEmpty = () => <AlertMessage title="No Departments Found" show={!fetching} />;
 
-  const keyExtractor = (item, index) => `${index}`
+  const keyExtractor = (item, index) => `${index}`;
 
   // How many items should be kept im memory as we scroll?
-  const oneScreensWorth = 20
+  const oneScreensWorth = 20;
 
   const fetchDepartments = React.useCallback(() => {
     getAllDepartments({ page: page - 1, sort, size });
   }, [getAllDepartments, page, sort, size]);
 
-
   const handleLoadMore = () => {
     if (departmentList.length) {
-      return
+      return;
     }
-    setPage(page + 1)
-    fetchDepartments()
-  }
+    setPage(page + 1);
+    fetchDepartments();
+  };
   return (
-    <View style={styles.container} testID='departmentScreen'>
+    <View style={styles.container} testID="departmentScreen">
       <FlatList
         contentContainerStyle={styles.listContent}
         data={departmentList}
@@ -78,13 +76,13 @@ const mapStateToProps = (state) => {
     department: state.departments.department,
     fetching: state.departments.fetchingAll,
     error: state.departments.errorAll,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllDepartments: (options) => dispatch(DepartmentActions.departmentAllRequest(options))
-  }
-}
+    getAllDepartments: (options) => dispatch(DepartmentActions.departmentAllRequest(options)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(DepartmentScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(DepartmentScreen);

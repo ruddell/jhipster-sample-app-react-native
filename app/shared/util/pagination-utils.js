@@ -27,10 +27,10 @@
  */
 export const loadMoreDataWhenScrolled = (currentData, incomingData, links) => {
   if (links.first === links.last || !currentData.length) {
-    return incomingData
+    return incomingData;
   }
   if (currentData.length >= incomingData.length) {
-    return [...currentData, ...incomingData]
+    return [...currentData, ...incomingData];
   }
-  return []
-}
+  return [];
+};

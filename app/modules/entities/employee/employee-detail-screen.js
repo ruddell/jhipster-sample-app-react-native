@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
 
-import EmployeeActions from './employee.reducer'
-import RoundedButton from '../../../shared/components/rounded-button/rounded-button'
+import EmployeeActions from './employee.reducer';
+import RoundedButton from '../../../shared/components/rounded-button/rounded-button';
 import EmployeeDeleteModal from './employee-delete-modal';
-import styles from './employee-styles'
+import styles from './employee-styles';
 
 function EmployeeDetailScreen(props) {
   const { route, getEmployee, navigation, employee, fetching, error } = props;
@@ -46,29 +46,29 @@ function EmployeeDetailScreen(props) {
       <Text>{employee.id}</Text>
       {/* FirstName Field */}
       <Text style={styles.label}>FirstName:</Text>
-        <Text testID='firstName'>{employee.firstName}</Text>
+      <Text testID="firstName">{employee.firstName}</Text>
       {/* LastName Field */}
       <Text style={styles.label}>LastName:</Text>
-        <Text testID='lastName'>{employee.lastName}</Text>
+      <Text testID="lastName">{employee.lastName}</Text>
       {/* Email Field */}
       <Text style={styles.label}>Email:</Text>
-        <Text testID='email'>{employee.email}</Text>
+      <Text testID="email">{employee.email}</Text>
       {/* PhoneNumber Field */}
       <Text style={styles.label}>PhoneNumber:</Text>
-        <Text testID='phoneNumber'>{employee.phoneNumber}</Text>
+      <Text testID="phoneNumber">{employee.phoneNumber}</Text>
       {/* HireDate Field */}
       <Text style={styles.label}>HireDate:</Text>
-        <Text testID='hireDate'>{String(employee.hireDate)}</Text>
+      <Text testID="hireDate">{String(employee.hireDate)}</Text>
       {/* Salary Field */}
       <Text style={styles.label}>Salary:</Text>
-        <Text testID='salary'>{employee.salary}</Text>
+      <Text testID="salary">{employee.salary}</Text>
       {/* CommissionPct Field */}
       <Text style={styles.label}>CommissionPct:</Text>
-        <Text testID='commissionPct'>{employee.commissionPct}</Text>
-        <Text style={styles.label}>Manager:</Text>
-        <Text testID='manager'>{String(employee.manager ? employee.manager.id : '')}</Text>
-        <Text style={styles.label}>Department:</Text>
-        <Text testID='department'>{String(employee.department ? employee.department.departmentName : '')}</Text>
+      <Text testID="commissionPct">{employee.commissionPct}</Text>
+      <Text style={styles.label}>Manager:</Text>
+      <Text testID="manager">{String(employee.manager ? employee.manager.id : '')}</Text>
+      <Text style={styles.label}>Department:</Text>
+      <Text testID="department">{String(employee.department ? employee.department.departmentName : '')}</Text>
 
       <View style={styles.entityButtons}>
         <RoundedButton
@@ -103,9 +103,9 @@ const mapStateToProps = (state) => {
     error: state.employees.errorOne,
     fetching: state.employees.fetchingOne,
     deleting: state.employees.deleting,
-    errorDeleting: state.employees.errorDeleting
-  }
-}
+    errorDeleting: state.employees.errorDeleting,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -113,7 +113,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllEmployees: (options) => dispatch(EmployeeActions.employeeAllRequest(options)),
     deleteEmployee: (id) => dispatch(EmployeeActions.employeeDeleteRequest(id)),
     resetEmployees: () => dispatch(EmployeeActions.employeeReset()),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeDetailScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeDetailScreen);

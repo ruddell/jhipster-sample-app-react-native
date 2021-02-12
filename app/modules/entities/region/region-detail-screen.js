@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
 
-import RegionActions from './region.reducer'
-import RoundedButton from '../../../shared/components/rounded-button/rounded-button'
+import RegionActions from './region.reducer';
+import RoundedButton from '../../../shared/components/rounded-button/rounded-button';
 import RegionDeleteModal from './region-delete-modal';
-import styles from './region-styles'
+import styles from './region-styles';
 
 function RegionDetailScreen(props) {
   const { route, getRegion, navigation, region, fetching, error } = props;
@@ -46,7 +46,7 @@ function RegionDetailScreen(props) {
       <Text>{region.id}</Text>
       {/* RegionName Field */}
       <Text style={styles.label}>RegionName:</Text>
-        <Text testID='regionName'>{region.regionName}</Text>
+      <Text testID="regionName">{region.regionName}</Text>
 
       <View style={styles.entityButtons}>
         <RoundedButton
@@ -81,9 +81,9 @@ const mapStateToProps = (state) => {
     error: state.regions.errorOne,
     fetching: state.regions.fetchingOne,
     deleting: state.regions.deleting,
-    errorDeleting: state.regions.errorDeleting
-  }
-}
+    errorDeleting: state.regions.errorDeleting,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -91,7 +91,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllRegions: (options) => dispatch(RegionActions.regionAllRequest(options)),
     deleteRegion: (id) => dispatch(RegionActions.regionDeleteRequest(id)),
     resetRegions: () => dispatch(RegionActions.regionReset()),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegionDetailScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(RegionDetailScreen);

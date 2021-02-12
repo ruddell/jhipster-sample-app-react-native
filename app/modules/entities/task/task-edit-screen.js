@@ -1,30 +1,17 @@
 import React, { createRef } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import TaskActions from './task.reducer'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import TaskActions from './task.reducer';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FormButton from '../../../shared/components/form/jhi-form-button';
 import FormField from '../../../shared/components/form/jhi-form-field';
 import Form from '../../../shared/components/form/jhi-form';
 import { useDidUpdateEffect } from '../../../shared/util/use-did-update-effect';
-import styles from './task-styles'
-
-
+import styles from './task-styles';
 
 function TaskEditScreen(props) {
-  const {
-    getTask,
-    updateTask,
-    route,
-    task,
-    fetching,
-    updating,
-    errorUpdating,
-    updateSuccess,
-    navigation,
-    reset,
-  } = props;
+  const { getTask, updateTask, route, task, fetching, updating, errorUpdating, updateSuccess, navigation, reset } = props;
 
   const [formValue, setFormValue] = React.useState();
   const [error, setError] = React.useState('');
@@ -48,23 +35,20 @@ function TaskEditScreen(props) {
   }, [task, fetching, isNewEntity]);
 
   // fetch related entities
-  React.useEffect(() => {
-  }, [
-  ]);
+  React.useEffect(() => {}, []);
 
   useDidUpdateEffect(() => {
     if (updating === false) {
       if (errorUpdating) {
         setError(errorUpdating && errorUpdating.detail ? errorUpdating.detail : 'Something went wrong updating the entity');
-      } else {
+      } else if (updateSuccess) {
         setError('');
         isNewEntity ? navigation.replace('TaskDetail', { entityId: task?.id }) : navigation.pop();
       }
     }
   }, [updateSuccess, errorUpdating, navigation]);
 
-
-const onSubmit = (data) => updateTask(formValueToEntity(data));
+  const onSubmit = (data) => updateTask(formValueToEntity(data));
 
   if (fetching) {
     return (
@@ -88,31 +72,27 @@ const onSubmit = (data) => updateTask(formValueToEntity(data));
         contentContainerStyle={styles.paddedScrollView}>
         {!!error && <Text style={styles.errorText}>{error}</Text>}
         {formValue && (
-          <Form initialValues={formValue}onSubmit={onSubmit} ref={formRef}>
-                <FormField 
-        name='title'
-        ref={titleRef}
-        label='Title'
-        placeholder='Enter Title'
-        testID='titleInput'
-        
-        inputType='text'
-        autoCapitalize='none'
-        
-        onSubmitEditing={() => descriptionRef.current?.focus()}
-         />
-                <FormField 
-        name='description'
-        ref={descriptionRef}
-        label='Description'
-        placeholder='Enter Description'
-        testID='descriptionInput'
-        
-        inputType='text'
-        autoCapitalize='none'
-        
-        onSubmitEditing={() => formRef.current?.submitForm()}
-         />
+          <Form initialValues={formValue} onSubmit={onSubmit} ref={formRef}>
+            <FormField
+              name="title"
+              ref={titleRef}
+              label="Title"
+              placeholder="Enter Title"
+              testID="titleInput"
+              inputType="text"
+              autoCapitalize="none"
+              onSubmitEditing={() => descriptionRef.current?.focus()}
+            />
+            <FormField
+              name="description"
+              ref={descriptionRef}
+              label="Description"
+              placeholder="Enter Description"
+              testID="descriptionInput"
+              inputType="text"
+              autoCapitalize="none"
+              onSubmitEditing={() => formRef.current?.submitForm()}
+            />
 
             <FormButton title={'Save'} testID={'submitButton'} />
           </Form>
@@ -125,22 +105,22 @@ const onSubmit = (data) => updateTask(formValueToEntity(data));
 // convenience methods for customizing the mapping of the entity to/from the form value
 const entityToFormValue = (value) => {
   if (!value) {
-    return {}
+    return {};
   }
   return {
     id: value.id ?? null,
     title: value.title ?? null,
     description: value.description ?? null,
-  }
-}
+  };
+};
 const formValueToEntity = (value) => {
   const entity = {
     id: value.id ?? null,
     title: value.title ?? null,
     description: value.description ?? null,
-  }
-  return entity
-}
+  };
+  return entity;
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -148,9 +128,9 @@ const mapStateToProps = (state) => {
     fetching: state.tasks.fetchingOne,
     updating: state.tasks.updating,
     updateSuccess: state.tasks.updateSuccess,
-    errorUpdating: state.tasks.errorUpdating
-  }
-}
+    errorUpdating: state.tasks.errorUpdating,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -158,7 +138,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllTasks: (options) => dispatch(TaskActions.taskAllRequest(options)),
     updateTask: (task) => dispatch(TaskActions.taskUpdateRequest(task)),
     reset: () => dispatch(TaskActions.taskReset()),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskEditScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(TaskEditScreen);

@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-import { ApplicationStyles, Colors } from '../../shared/themes'
+import { ApplicationStyles, Colors } from '../../shared/themes';
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -10,7 +10,7 @@ export default StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: 'white',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   button: {
     height: 36,
@@ -20,6 +20,6 @@ export default StyleSheet.create({
     borderRadius: 8,
     marginBottom: 10,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
-})
+});

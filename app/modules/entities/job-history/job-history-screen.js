@@ -1,10 +1,10 @@
-import React from 'react'
-import { FlatList, Text, TouchableOpacity, View } from 'react-native'
-import { connect } from 'react-redux'
+import React from 'react';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
-import JobHistoryActions from './job-history.reducer'
-import styles from './job-history-styles'
-import AlertMessage from '../../../shared/components/alert-message/alert-message'
+import JobHistoryActions from './job-history.reducer';
+import styles from './job-history-styles';
+import AlertMessage from '../../../shared/components/alert-message/alert-message';
 
 function JobHistoryScreen(props) {
   const [page, setPage] = React.useState(0);
@@ -30,34 +30,32 @@ function JobHistoryScreen(props) {
           {/* <Text style={styles.label}>{item.description}</Text> */}
         </View>
       </TouchableOpacity>
-    )
-  }
+    );
+  };
 
   // Render a header
 
   // Show this when data is empty
-  const renderEmpty = () =>
-    <AlertMessage title='No JobHistories Found' show={!fetching} />
+  const renderEmpty = () => <AlertMessage title="No JobHistories Found" show={!fetching} />;
 
-  const keyExtractor = (item, index) => `${index}`
+  const keyExtractor = (item, index) => `${index}`;
 
   // How many items should be kept im memory as we scroll?
-  const oneScreensWorth = 20
+  const oneScreensWorth = 20;
 
   const fetchJobHistories = React.useCallback(() => {
     getAllJobHistories({ page: page - 1, sort, size });
   }, [getAllJobHistories, page, sort, size]);
 
-
   const handleLoadMore = () => {
     if (page < props.links.next || props.links.next === undefined || fetching) {
-      return
+      return;
     }
-    setPage(page + 1)
-    fetchJobHistories()
-  }
+    setPage(page + 1);
+    fetchJobHistories();
+  };
   return (
-    <View style={styles.container} testID='jobHistoryScreen'>
+    <View style={styles.container} testID="jobHistoryScreen">
       <FlatList
         contentContainerStyle={styles.listContent}
         data={jobHistoryList}
@@ -79,13 +77,13 @@ const mapStateToProps = (state) => {
     fetching: state.jobHistories.fetchingAll,
     error: state.jobHistories.errorAll,
     links: state.jobHistories.links,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllJobHistories: (options) => dispatch(JobHistoryActions.jobHistoryAllRequest(options))
-  }
-}
+    getAllJobHistories: (options) => dispatch(JobHistoryActions.jobHistoryAllRequest(options)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobHistoryScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(JobHistoryScreen);

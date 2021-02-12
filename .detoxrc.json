@@ -16,7 +16,7 @@
       "uiHierarchy": "enabled",
       "screenshot": {
         "shouldTakeAutomaticSnapshots": true,
-        "keepOnlyFailedTestsArtifacts": true,
+        "keepOnlyFailedTestsArtifacts": true
       }
     }
   },

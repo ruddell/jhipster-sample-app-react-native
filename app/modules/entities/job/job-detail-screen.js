@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
 
-import JobActions from './job.reducer'
-import RoundedButton from '../../../shared/components/rounded-button/rounded-button'
+import JobActions from './job.reducer';
+import RoundedButton from '../../../shared/components/rounded-button/rounded-button';
 import JobDeleteModal from './job-delete-modal';
-import styles from './job-styles'
+import styles from './job-styles';
 
 function JobDetailScreen(props) {
   const { route, getJob, navigation, job, fetching, error } = props;
@@ -46,19 +46,22 @@ function JobDetailScreen(props) {
       <Text>{job.id}</Text>
       {/* JobTitle Field */}
       <Text style={styles.label}>JobTitle:</Text>
-        <Text testID='jobTitle'>{job.jobTitle}</Text>
+      <Text testID="jobTitle">{job.jobTitle}</Text>
       {/* MinSalary Field */}
       <Text style={styles.label}>MinSalary:</Text>
-        <Text testID='minSalary'>{job.minSalary}</Text>
+      <Text testID="minSalary">{job.minSalary}</Text>
       {/* MaxSalary Field */}
       <Text style={styles.label}>MaxSalary:</Text>
-        <Text testID='maxSalary'>{job.maxSalary}</Text>
-        <Text style={styles.label}>Task:</Text>
-        {job.tasks && job.tasks.map((entity, index) => (
-          <Text key={index} testID={`tasks-${index}`}>{String(entity.title || '')}</Text>
+      <Text testID="maxSalary">{job.maxSalary}</Text>
+      <Text style={styles.label}>Task:</Text>
+      {job.tasks &&
+        job.tasks.map((entity, index) => (
+          <Text key={index} testID={`tasks-${index}`}>
+            {String(entity.title || '')}
+          </Text>
         ))}
-        <Text style={styles.label}>Employee:</Text>
-        <Text testID='employee'>{String(job.employee ? job.employee.email : '')}</Text>
+      <Text style={styles.label}>Employee:</Text>
+      <Text testID="employee">{String(job.employee ? job.employee.email : '')}</Text>
 
       <View style={styles.entityButtons}>
         <RoundedButton
@@ -93,9 +96,9 @@ const mapStateToProps = (state) => {
     error: state.jobs.errorOne,
     fetching: state.jobs.fetchingOne,
     deleting: state.jobs.deleting,
-    errorDeleting: state.jobs.errorDeleting
-  }
-}
+    errorDeleting: state.jobs.errorDeleting,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -103,7 +106,7 @@ const mapDispatchToProps = (dispatch) => {
     getAllJobs: (options) => dispatch(JobActions.jobAllRequest(options)),
     deleteJob: (id) => dispatch(JobActions.jobDeleteRequest(id)),
     resetJobs: () => dispatch(JobActions.jobReset()),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobDetailScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(JobDetailScreen);

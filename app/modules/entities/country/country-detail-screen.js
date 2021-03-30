@@ -21,6 +21,7 @@ function CountryDetailScreen(props) {
       if (!routeEntityId) {
         navigation.navigate('Country');
       } else {
+        setDeleteModalVisible(false);
         getCountry(routeEntityId);
       }
     }, [routeEntityId, getCountry, navigation]),

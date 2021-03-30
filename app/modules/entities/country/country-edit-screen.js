@@ -59,7 +59,7 @@ function CountryEditScreen(props) {
         setError(errorUpdating && errorUpdating.detail ? errorUpdating.detail : 'Something went wrong updating the entity');
       } else if (updateSuccess) {
         setError('');
-        isNewEntity ? navigation.replace('CountryDetail', { entityId: country?.id }) : navigation.pop();
+        isNewEntity || !navigation.canGoBack() ? navigation.replace('CountryDetail', { entityId: country?.id }) : navigation.pop();
       }
     }
   }, [updateSuccess, errorUpdating, navigation]);

@@ -63,49 +63,49 @@ const create = (baseURL = AppConfig.apiUrl) => {
   const getRegion = (regionId) => api.get('api/regions/' + regionId);
   const getAllRegions = (options) => api.get('api/regions', options);
   const createRegion = (region) => api.post('api/regions', region);
-  const updateRegion = (region) => api.put('api/regions', region);
+  const updateRegion = (region) => api.put(`api/regions/${region.id}`, region);
   const deleteRegion = (regionId) => api.delete('api/regions/' + regionId);
 
   const getCountry = (countryId) => api.get('api/countries/' + countryId);
   const getAllCountries = (options) => api.get('api/countries', options);
   const createCountry = (country) => api.post('api/countries', country);
-  const updateCountry = (country) => api.put('api/countries', country);
+  const updateCountry = (country) => api.put(`api/countries/${country.id}`, country);
   const deleteCountry = (countryId) => api.delete('api/countries/' + countryId);
 
   const getLocation = (locationId) => api.get('api/locations/' + locationId);
   const getAllLocations = (options) => api.get('api/locations', options);
   const createLocation = (location) => api.post('api/locations', location);
-  const updateLocation = (location) => api.put('api/locations', location);
+  const updateLocation = (location) => api.put(`api/locations/${location.id}`, location);
   const deleteLocation = (locationId) => api.delete('api/locations/' + locationId);
 
   const getDepartment = (departmentId) => api.get('api/departments/' + departmentId);
   const getAllDepartments = (options) => api.get('api/departments', options);
   const createDepartment = (department) => api.post('api/departments', department);
-  const updateDepartment = (department) => api.put('api/departments', department);
+  const updateDepartment = (department) => api.put(`api/departments/${department.id}`, department);
   const deleteDepartment = (departmentId) => api.delete('api/departments/' + departmentId);
 
   const getTask = (taskId) => api.get('api/tasks/' + taskId);
   const getAllTasks = (options) => api.get('api/tasks', options);
   const createTask = (task) => api.post('api/tasks', task);
-  const updateTask = (task) => api.put('api/tasks', task);
+  const updateTask = (task) => api.put(`api/tasks/${task.id}`, task);
   const deleteTask = (taskId) => api.delete('api/tasks/' + taskId);
 
   const getEmployee = (employeeId) => api.get('api/employees/' + employeeId);
   const getAllEmployees = (options) => api.get('api/employees', options);
   const createEmployee = (employee) => api.post('api/employees', employee);
-  const updateEmployee = (employee) => api.put('api/employees', employee);
+  const updateEmployee = (employee) => api.put(`api/employees/${employee.id}`, employee);
   const deleteEmployee = (employeeId) => api.delete('api/employees/' + employeeId);
 
   const getJob = (jobId) => api.get('api/jobs/' + jobId);
   const getAllJobs = (options) => api.get('api/jobs', options);
   const createJob = (job) => api.post('api/jobs', job);
-  const updateJob = (job) => api.put('api/jobs', job);
+  const updateJob = (job) => api.put(`api/jobs/${job.id}`, job);
   const deleteJob = (jobId) => api.delete('api/jobs/' + jobId);
 
   const getJobHistory = (jobHistoryId) => api.get('api/job-histories/' + jobHistoryId);
   const getAllJobHistories = (options) => api.get('api/job-histories', options);
   const createJobHistory = (jobHistory) => api.post('api/job-histories', jobHistory);
-  const updateJobHistory = (jobHistory) => api.put('api/job-histories', jobHistory);
+  const updateJobHistory = (jobHistory) => api.put(`api/job-histories/${jobHistory.id}`, jobHistory);
   const deleteJobHistory = (jobHistoryId) => api.delete('api/job-histories/' + jobHistoryId);
   // jhipster-react-native-api-method-needle
 

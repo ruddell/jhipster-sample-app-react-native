@@ -82,7 +82,7 @@ function JobHistoryEditScreen(props) {
         setError(errorUpdating && errorUpdating.detail ? errorUpdating.detail : 'Something went wrong updating the entity');
       } else if (updateSuccess) {
         setError('');
-        isNewEntity ? navigation.replace('JobHistoryDetail', { entityId: jobHistory?.id }) : navigation.pop();
+        isNewEntity || !navigation.canGoBack() ? navigation.replace('JobHistoryDetail', { entityId: jobHistory?.id }) : navigation.pop();
       }
     }
   }, [updateSuccess, errorUpdating, navigation]);

@@ -21,6 +21,7 @@ function LocationDetailScreen(props) {
       if (!routeEntityId) {
         navigation.navigate('Location');
       } else {
+        setDeleteModalVisible(false);
         getLocation(routeEntityId);
       }
     }, [routeEntityId, getLocation, navigation]),

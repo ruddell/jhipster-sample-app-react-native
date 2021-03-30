@@ -21,6 +21,7 @@ function JobDetailScreen(props) {
       if (!routeEntityId) {
         navigation.navigate('Job');
       } else {
+        setDeleteModalVisible(false);
         getJob(routeEntityId);
       }
     }, [routeEntityId, getJob, navigation]),

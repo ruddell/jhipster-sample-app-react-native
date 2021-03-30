@@ -21,6 +21,7 @@ function DepartmentDetailScreen(props) {
       if (!routeEntityId) {
         navigation.navigate('Department');
       } else {
+        setDeleteModalVisible(false);
         getDepartment(routeEntityId);
       }
     }, [routeEntityId, getDepartment, navigation]),

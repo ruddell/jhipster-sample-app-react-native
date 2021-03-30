@@ -21,6 +21,7 @@ function TaskDetailScreen(props) {
       if (!routeEntityId) {
         navigation.navigate('Task');
       } else {
+        setDeleteModalVisible(false);
         getTask(routeEntityId);
       }
     }, [routeEntityId, getTask, navigation]),

@@ -21,6 +21,7 @@ function RegionDetailScreen(props) {
       if (!routeEntityId) {
         navigation.navigate('Region');
       } else {
+        setDeleteModalVisible(false);
         getRegion(routeEntityId);
       }
     }, [routeEntityId, getRegion, navigation]),

@@ -21,6 +21,7 @@ function EmployeeDetailScreen(props) {
       if (!routeEntityId) {
         navigation.navigate('Employee');
       } else {
+        setDeleteModalVisible(false);
         getEmployee(routeEntityId);
       }
     }, [routeEntityId, getEmployee, navigation]),

@@ -38,7 +38,7 @@ describe('Location Screen Tests', () => {
     await scrollTo('cityInput', 'locationEditScrollView');
     await element(by.id('cityInput')).replaceText('Harmonystad');
     await scrollTo('stateProvinceInput', 'locationEditScrollView');
-    await element(by.id('stateProvinceInput')).replaceText('Ngultrum');
+    await element(by.id('stateProvinceInput')).replaceText('Rupee');
     await element(by.id('locationEditScrollView')).swipe('down', 'slow');
     await scrollTo('submitButton', 'locationEditScrollView');
     await waitThenTapButton('submitButton');
@@ -52,7 +52,7 @@ describe('Location Screen Tests', () => {
     await scrollTo('city', 'locationDetailScrollView');
     await expect(element(by.id('city'))).toHaveLabel('Harmonystad');
     await scrollTo('stateProvince', 'locationDetailScrollView');
-    await expect(element(by.id('stateProvince'))).toHaveLabel('Ngultrum');
+    await expect(element(by.id('stateProvince'))).toHaveLabel('Rupee');
 
     // update
     await scrollTo('locationEditButton', 'locationDetailScrollView');
@@ -65,7 +65,7 @@ describe('Location Screen Tests', () => {
     await scrollTo('cityInput', 'locationEditScrollView');
     await element(by.id('cityInput')).replaceText('Harmonystad');
     await scrollTo('stateProvinceInput', 'locationEditScrollView');
-    await element(by.id('stateProvinceInput')).replaceText('Ngultrum');
+    await element(by.id('stateProvinceInput')).replaceText('Rupee');
     await element(by.id('locationEditScrollView')).swipe('down', 'slow');
     await scrollTo('submitButton', 'locationEditScrollView');
     await waitThenTapButton('submitButton');
@@ -79,7 +79,7 @@ describe('Location Screen Tests', () => {
     await scrollTo('city', 'locationDetailScrollView');
     await expect(element(by.id('city'))).toHaveLabel('Harmonystad');
     await scrollTo('stateProvince', 'locationDetailScrollView');
-    await expect(element(by.id('stateProvince'))).toHaveLabel('Ngultrum');
+    await expect(element(by.id('stateProvince'))).toHaveLabel('Rupee');
 
     // delete
     await scrollTo('locationDeleteButton', 'locationDetailScrollView');

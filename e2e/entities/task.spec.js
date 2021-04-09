@@ -34,7 +34,7 @@ describe('Task Screen Tests', () => {
     await scrollTo('titleInput', 'taskEditScrollView');
     await element(by.id('titleInput')).replaceText('Grocery USB');
     await scrollTo('descriptionInput', 'taskEditScrollView');
-    await element(by.id('descriptionInput')).replaceText('mobile Ohio Rupee');
+    await element(by.id('descriptionInput')).replaceText('mobile Ohio Ngultrum');
     await element(by.id('taskEditScrollView')).swipe('down', 'slow');
     await scrollTo('submitButton', 'taskEditScrollView');
     await waitThenTapButton('submitButton');
@@ -44,7 +44,7 @@ describe('Task Screen Tests', () => {
     await scrollTo('title', 'taskDetailScrollView');
     await expect(element(by.id('title'))).toHaveLabel('Grocery USB');
     await scrollTo('description', 'taskDetailScrollView');
-    await expect(element(by.id('description'))).toHaveLabel('mobile Ohio Rupee');
+    await expect(element(by.id('description'))).toHaveLabel('mobile Ohio Ngultrum');
 
     // update
     await scrollTo('taskEditButton', 'taskDetailScrollView');
@@ -53,7 +53,7 @@ describe('Task Screen Tests', () => {
     await scrollTo('titleInput', 'taskEditScrollView');
     await element(by.id('titleInput')).replaceText('Grocery USB');
     await scrollTo('descriptionInput', 'taskEditScrollView');
-    await element(by.id('descriptionInput')).replaceText('mobile Ohio Rupee');
+    await element(by.id('descriptionInput')).replaceText('mobile Ohio Ngultrum');
     await element(by.id('taskEditScrollView')).swipe('down', 'slow');
     await scrollTo('submitButton', 'taskEditScrollView');
     await waitThenTapButton('submitButton');
@@ -63,7 +63,7 @@ describe('Task Screen Tests', () => {
     await scrollTo('title', 'taskDetailScrollView');
     await expect(element(by.id('title'))).toHaveLabel('Grocery USB');
     await scrollTo('description', 'taskDetailScrollView');
-    await expect(element(by.id('description'))).toHaveLabel('mobile Ohio Rupee');
+    await expect(element(by.id('description'))).toHaveLabel('mobile Ohio Ngultrum');
 
     // delete
     await scrollTo('taskDeleteButton', 'taskDetailScrollView');

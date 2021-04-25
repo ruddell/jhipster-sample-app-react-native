@@ -59,7 +59,7 @@ describe('Region Screen Tests', () => {
 
     // delete
     await scrollTo('regionDeleteButton', 'regionDetailScrollView');
-    await tapFirstElementByLabel('Region Delete Button');
+    await waitThenTapButton('regionDeleteButton');
     await waitForElementToBeVisibleById('regionDeleteModal');
     await waitThenTapButton('deleteButton');
     await waitForElementToBeVisibleById('regionScreen');

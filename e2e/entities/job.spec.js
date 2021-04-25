@@ -75,7 +75,7 @@ describe('Job Screen Tests', () => {
 
     // delete
     await scrollTo('jobDeleteButton', 'jobDetailScrollView');
-    await tapFirstElementByLabel('Job Delete Button');
+    await waitThenTapButton('jobDeleteButton');
     await waitForElementToBeVisibleById('jobDeleteModal');
     await waitThenTapButton('deleteButton');
     await waitForElementToBeVisibleById('jobScreen');

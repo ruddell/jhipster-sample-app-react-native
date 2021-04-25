@@ -59,7 +59,7 @@ describe('Department Screen Tests', () => {
 
     // delete
     await scrollTo('departmentDeleteButton', 'departmentDetailScrollView');
-    await tapFirstElementByLabel('Department Delete Button');
+    await waitThenTapButton('departmentDeleteButton');
     await waitForElementToBeVisibleById('departmentDeleteModal');
     await waitThenTapButton('deleteButton');
     await waitForElementToBeVisibleById('departmentScreen');

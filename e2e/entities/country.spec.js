@@ -59,7 +59,7 @@ describe('Country Screen Tests', () => {
 
     // delete
     await scrollTo('countryDeleteButton', 'countryDetailScrollView');
-    await tapFirstElementByLabel('Country Delete Button');
+    await waitThenTapButton('countryDeleteButton');
     await waitForElementToBeVisibleById('countryDeleteModal');
     await waitThenTapButton('deleteButton');
     await waitForElementToBeVisibleById('countryScreen');

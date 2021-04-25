@@ -82,7 +82,7 @@ describe('JobHistory Screen Tests', () => {
 
     // delete
     await scrollTo('jobHistoryDeleteButton', 'jobHistoryDetailScrollView');
-    await tapFirstElementByLabel('JobHistory Delete Button');
+    await waitThenTapButton('jobHistoryDeleteButton');
     await waitForElementToBeVisibleById('jobHistoryDeleteModal');
     await waitThenTapButton('deleteButton');
     await waitForElementToBeVisibleById('jobHistoryScreen');

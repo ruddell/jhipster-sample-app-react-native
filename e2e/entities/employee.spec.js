@@ -111,7 +111,7 @@ describe('Employee Screen Tests', () => {
 
     // delete
     await scrollTo('employeeDeleteButton', 'employeeDetailScrollView');
-    await tapFirstElementByLabel('Employee Delete Button');
+    await waitThenTapButton('employeeDeleteButton');
     await waitForElementToBeVisibleById('employeeDeleteModal');
     await waitThenTapButton('deleteButton');
     await waitForElementToBeVisibleById('employeeScreen');

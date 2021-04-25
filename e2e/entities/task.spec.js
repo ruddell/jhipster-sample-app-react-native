@@ -67,7 +67,7 @@ describe('Task Screen Tests', () => {
 
     // delete
     await scrollTo('taskDeleteButton', 'taskDetailScrollView');
-    await tapFirstElementByLabel('Task Delete Button');
+    await waitThenTapButton('taskDeleteButton');
     await waitForElementToBeVisibleById('taskDeleteModal');
     await waitThenTapButton('deleteButton');
     await waitForElementToBeVisibleById('taskScreen');

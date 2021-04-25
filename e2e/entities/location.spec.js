@@ -83,7 +83,7 @@ describe('Location Screen Tests', () => {
 
     // delete
     await scrollTo('locationDeleteButton', 'locationDetailScrollView');
-    await tapFirstElementByLabel('Location Delete Button');
+    await waitThenTapButton('locationDeleteButton');
     await waitForElementToBeVisibleById('locationDeleteModal');
     await waitThenTapButton('deleteButton');
     await waitForElementToBeVisibleById('locationScreen');
